@@ -1,0 +1,165 @@
+unit Unit3;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Styles, Vcl.Menus, Vcl.ExtCtrls, Vcl.WinXPanels, Vcl.Themes,
+  Vcl.TitleBarCtrls, Vcl.StdCtrls, Vcl.Grids, Vcl.ValEdit, Vcl.Buttons,
+  Vcl.ComCtrls, System.ImageList, Vcl.ImgList, Vcl.ControlList, Vcl.Imaging.jpeg;
+
+type
+  TForm3 = class(TForm)
+    MainController: TPageControl;
+    TabSheet1: TTabSheet;
+    TabSheet2: TTabSheet;
+    TabSheet3: TTabSheet;
+    reactorGroup: TRadioGroup;
+    tvsTypeGroup: TRadioGroup;
+    radioPanel: TGridPanel;
+    TabSheet4: TTabSheet;
+    shellGroup: TRadioGroup;
+    tvsMaterialGroup: TRadioGroup;
+    matrixMaterialGroup: TRadioGroup;
+    fuelMaterialGroup: TRadioGroup;
+    startDataPanel: TPanel;
+    AcceptStartDataBtn: TButton;
+    procedure FormCreate(Sender: TObject);
+
+    procedure MainControllerChange(Sender: TObject);
+    procedure reactorGroupContextPopup(Sender: TObject; MousePos: TPoint;
+      var Handled: Boolean);
+    procedure FormResize(Sender: TObject);
+    procedure AcceptStartDataBtnClick(Sender: TObject);
+
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+
+
+var
+  Form3: TForm3;
+  //---------------------------- APP STATE (REACT DATA)
+
+  materialsIsset : bool;
+  termoIsset : bool;
+  physicsIsset : bool;
+
+  reactorType : String;
+  ñassetteType : String;
+  shellMaterial : String;
+  ñassetteMaterial : String;
+  matrixMaterial : String;
+  fuelMaterial : String;
+
+
+implementation
+
+{$R *.dfm}
+
+
+
+procedure TForm3.AcceptStartDataBtnClick(Sender: TObject);
+begin
+    reactorType := reactorGroup.Items[reactorGroup.ItemIndex];
+    ñassetteType := tvsTypeGroup.Items[tvsTypeGroup.ItemIndex];
+    //shellMaterial := shellGroup.Items[shellGroup.ItemIndex];
+    //ñassetteMaterial := tvsMaterialGroup.Items[tvsMaterialGroup.ItemIndex];
+    //matrixMaterial := matrixMaterialGroup.Items[matrixMaterialGroup.ItemIndex];
+    //fuelMaterial := fuelMaterialGroup.Items[fuelMaterialGroup.ItemIndex];
+
+    try
+      showmessage(tvsTypeGroup.Items[tvsTypeGroup.ItemIndex]);
+    except
+      begin
+        showmessage('ne vvel');
+      end;
+
+    end;
+
+
+
+end;
+
+procedure TForm3.FormCreate(Sender: TObject);
+begin
+  //WindowState := wsMaximized;
+  TStyleManager.SetStyle('Iceberg Classico');
+  materialsIsset := False;
+  termoIsset := False;
+  physicsIsset := False;
+
+  reactorGroup.ItemIndex := 0;
+
+
+
+end;
+
+
+
+procedure TForm3.FormResize(Sender: TObject);
+begin
+     if WindowState = wsMaximized then
+     begin
+      
+     end;
+
+end;
+
+procedure TForm3.MainControllerChange(Sender: TObject);
+begin
+    if MainController.ActivePageIndex = 1 then
+    begin
+      if not materialsIsset then
+      begin
+
+          showmessage('Çàäàéòå ìàòåðèàëû ðåàêòîðà');
+          MainController.ActivePageIndex := 0;
+      end;
+
+    end;
+
+    if MainController.ActivePageIndex = 2 then
+    begin
+      if not termoIsset then
+      begin
+          showmessage('Âûïîëíèòå òåïëîâîé ðàñ÷åò');
+          MainController.ActivePageIndex := 0;
+      end;
+
+    end;
+
+
+end;
+
+
+
+
+
+
+
+
+procedure TForm3.reactorGroupContextPopup(Sender: TObject; MousePos: TPoint;
+  var Handled: Boolean);
+begin
+    if reactorGroup.ItemIndex = 0 then
+    begin
+          ShowMessage('vvrd');
+    end;
+
+    if reactorGroup.ItemIndex = 1 then
+    begin
+          ShowMessage('vvrk');
+    end;
+end;
+
+end.
+
+
+
+
+

@@ -1,0 +1,3879 @@
+unit Mars2022;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Styles, Vcl.Menus, Vcl.ExtCtrls, Vcl.WinXPanels, Vcl.Themes,
+  Vcl.TitleBarCtrls, Vcl.StdCtrls, Vcl.Grids, Vcl.ValEdit, Vcl.Buttons,
+  Vcl.ComCtrls, System.ImageList, Vcl.ImgList, Vcl.ControlList, Vcl.Imaging.jpeg, IdStrings,
+  Vcl.Tabs, COMObj;
+
+type
+  TMars = class(TForm)
+    MainController: TPageControl;
+    TabSheet1: TTabSheet;
+    TabSheet2: TTabSheet;
+    TabSheet3: TTabSheet;
+    reactorGroup: TRadioGroup;
+    tvsTypeGroup: TRadioGroup;
+    radioPanel: TGridPanel;
+    TabSheet4: TTabSheet;
+    shellGroup: TRadioGroup;
+    tvsMaterialGroup: TRadioGroup;
+    matrixMaterialGroup: TRadioGroup;
+    fuelMaterialGroup: TRadioGroup;
+    startDataPanel: TPanel;
+    AcceptStartDataBtn: TButton;
+    TrController: TPageControl;
+    TabSheet5: TTabSheet;
+    TabSheet6: TTabSheet;
+    Panel1: TPanel;
+    ResultsPanel: TPanel;
+    ScrollBox1: TScrollBox;
+    TaskPanel: TPanel;
+    DataPanel: TPanel;
+    TasksControll: TTabSet;
+    DataGrid: TGridPanel;
+    Button1: TButton;
+    NOfReactorCaption: TEdit;
+    NOfReactor: TEdit;
+    AZCompanyCaption: TEdit;
+    AZCompany: TEdit;
+    TOfTeplInputCaption: TEdit;
+    TOfTeplInput: TEdit;
+    MassRashParCaption: TEdit;
+    MassRashPar: TEdit;
+    DavlTeplV1KontureCaption: TEdit;
+    DavlTeplV1Konture: TEdit;
+    OtnRashTeplCherezKassetyCaption: TEdit;
+    OtnRashTeplCherezKassety: TEdit;
+    TolshinaCylindrObechKassetyCaption: TEdit;
+    TolshinaCylindrObechKassety: TEdit;
+    TolshinaKozhKassetCaption: TEdit;
+    TolshinaKozhKasset: TEdit;
+    TolshObolochTvelaCaption: TEdit;
+    TolshObolochTvela: TEdit;
+    TolshGeliyZazorCaption: TEdit;
+    TolshGeliyZazor: TEdit;
+    ChisloRyadovTvelovCaption: TEdit;
+    ChisloRyadovTvelov: TEdit;
+    KoefNeravnTeplovPoRadAzCaption: TEdit;
+    KoefNeravnTeplovPoRadAz: TEdit;
+    KoefNeravnVygoraniyaCaption: TEdit;
+    KoefNeravnVygoraniya: TEdit;
+    RactorTypeCaption: TEdit;
+    ReactorTypeInput: TEdit;
+    CasseteTypeCaption: TEdit;
+    CasseteTypeInput: TEdit;
+    TeplMaterialObolochkiCaption: TEdit;
+    TeplMaterialObolochki: TEdit;
+    TeplToplivaCaption: TEdit;
+    TeplTopliva: TEdit;
+    Task1Panel: TPanel;
+    Task2Panel: TPanel;
+    Task3Panel: TPanel;
+    Task4Panel: TPanel;
+    Task5Panel: TPanel;
+    Task6Panel: TPanel;
+    Task7Panel: TPanel;
+    GridPanel1: TGridPanel;
+    HkdTask1Caption: TEdit;
+    HkdTask1: TEdit;
+    PredDopVigorTask1Caption: TEdit;
+    PredDopVigorTask1: TEdit;
+    ZadanSredZnachSkorTeplNaVhVazTask1Caption: TEdit;
+    ZadanSredZnachSkorTeplNaVhVazTask1: TEdit;
+    DolVodVyachTask1Caption: TEdit;
+    DolVodVyachTask1: TEdit;
+    GridPanel2: TGridPanel;
+    HkdTask2Caption: TEdit;
+    HkdTask2: TEdit;
+    ZazorMezhdCassetTask2Caption: TEdit;
+    ZazorMezhdCassetTask2: TEdit;
+    PredDopVigorTask2Caption: TEdit;
+    PredDopVigorTask2: TEdit;
+    ZadanSredZnachSkorTeplNaVhodVazTask2Caption: TEdit;
+    ZadanSredZnachSkorTeplNaVhodVazTask2: TEdit;
+    GridPanel3: TGridPanel;
+    DiamTvelaTask3Caption: TEdit;
+    DiamTvelaTask3: TEdit;
+    ZazorMezhdTvelamiTask3Caption: TEdit;
+    ZazorMezhdTvelamiTask3: TEdit;
+    ZazorMezhdCassetTask3Caption: TEdit;
+    ZazorMezhdCassetTask3: TEdit;
+    PredDopVigorTask3Caption: TEdit;
+    PredDopVigorTask3: TEdit;
+    ZadanSredZnachSkorTeplNaVhodVazTask3Caption: TEdit;
+    ZadanSredZnachSkorTeplNaVhodVazTask3: TEdit;
+    GridPanel4: TGridPanel;
+    DiamTvelaTask4Caption: TEdit;
+    DiamTvelaTask4: TEdit;
+    ZazorMezhdTvelamiTask4Caption: TEdit;
+    ZazorMezhdTvelamiTask4: TEdit;
+    ZazorMezhdCassetTask4Caption: TEdit;
+    ZazorMezhdCassetTask4: TEdit;
+    HkdTask4Caption: TEdit;
+    HkdTask4: TEdit;
+    PredDopVigorTask4Caption: TEdit;
+    PredDopVigorTask4: TEdit;
+    GridPanel5: TGridPanel;
+    DiamTvelaTask5Caption: TEdit;
+    DiamTvelaTask5: TEdit;
+    ZazorMezhdTvelamiTask5Caption: TEdit;
+    ZazorMezhdTvelamiTask5: TEdit;
+    ZazorMezhdCassetTask5Caption: TEdit;
+    ZazorMezhdCassetTask5: TEdit;
+    ChisloCassetTask5Caption: TEdit;
+    ChisloCassetTask5: TEdit;
+    PredDopVigorTask5Caption: TEdit;
+    PredDopVigorTask5: TEdit;
+    GridPanel6: TGridPanel;
+    DiamTvelaTask6Caption: TEdit;
+    DiamTvelaTask6: TEdit;
+    ZazorMezhdCassetTask6Caption: TEdit;
+    ZazorMezhdCassetTask6: TEdit;
+    ChisloCassetTask6Caption: TEdit;
+    ChisloCassetTask6: TEdit;
+    PredDopVigorTask6Caption: TEdit;
+    PredDopVigorTask6: TEdit;
+    ZadanSredZnachSkorTeplNaVhodVazTask6Caption: TEdit;
+    ZadanSredZnachSkorTeplNaVhodVazTask6: TEdit;
+    GridPanel7: TGridPanel;
+    DiamTvelaTask7Caption: TEdit;
+    DiamTvelaTask7: TEdit;
+    ZazorMezhdTvelamiTask7Caption: TEdit;
+    ZazorMezhdTvelamiTask7: TEdit;
+    ZazorMezhdCassetTask7Caption: TEdit;
+    ZazorMezhdCassetTask7: TEdit;
+    ChisloCassetTask7Caption: TEdit;
+    ChisloCassetTask7: TEdit;
+    VisotaAzTask7Caption: TEdit;
+    VisotaAzTask7: TEdit;
+    TOfTeplOutputCaption: TEdit;
+    TOfTeplOutput: TEdit;
+    ScrollBox2: TScrollBox;
+    Button3: TButton;
+    GridPanel8: TGridPanel;
+    TR_ReactorTypeResultOutputCaption: TLabel;
+    TR_ReactorTypeResultOutput: TEdit;
+    TR_CassetTypeResultOutputCaption: TLabel;
+    TR_CassetTypeResultOutput: TEdit;
+    TR_TaskNumberResultOutput: TLabel;
+    TR_ShellMaterialTypeResultOutputCaption: TLabel;
+    TR_ShellMaterialTypeResultOutput: TEdit;
+    TR_FuelTypeResultOutputCaption: TLabel;
+    TR_FuelTypeResultOutput: TEdit;
+    Button2: TButton;
+    TabData: TStringGrid;
+    Tab: TStringGrid;
+    FrController: TPageControl;
+    TabSheet7: TTabSheet;
+    TabSheet8: TTabSheet;
+    GridPanel9: TGridPanel;
+    GridPanel10: TGridPanel;
+    Panel2: TPanel;
+    Panel3: TPanel;
+    Panel4: TPanel;
+    Panel5: TPanel;
+    FrTab: TStringGrid;
+    GridPanel11: TGridPanel;
+    FR_Result_ReactorTypeCaption: TLabel;
+    FR_Result_ReactorType: TEdit;
+    FR_Result_CassetTypeCaption: TLabel;
+    FR_Result_CassetType: TEdit;
+    FR_Result_MaterialOblCaption: TLabel;
+    FR_Result_MaterialObl: TEdit;
+    FR_Result_FuelTypeCaption: TLabel;
+    FR_Result_FuelType: TEdit;
+    FR_Result_CassetMaterialCaption: TLabel;
+    FR_Result_CassetMaterial: TEdit;
+    FR_Result_MatrixMaterialCaption: TLabel;
+    FR_Result_MatrixMaterial: TEdit;
+    ScrollBox3: TScrollBox;
+    GridPanel12: TGridPanel;
+    FR_ReactorTypeCaption: TLabel;
+    FR_ReactorType: TEdit;
+    FR_CassetTypeCaption: TLabel;
+    FR_CassetType: TEdit;
+    FR_MaterialOblCaption: TLabel;
+    FR_MaterialObl: TEdit;
+    FR_FuelCaption: TLabel;
+    FR_Fuel: TEdit;
+    FR_CassetMaterialCaption: TLabel;
+    FR_CassetMaterial: TEdit;
+    FR_MatrixMaterialCaption: TLabel;
+    FR_MatrixMaterial: TEdit;
+    GridPanel13: TGridPanel;
+    FR_ChisloAtomovUrVMollekuleGorCaption: TEdit;
+    FR_ChisloAtomovUrVMollekuleGor: TEdit;
+    FR_ChisloAtomIogoElemVMollekuleGorCaption: TEdit;
+    FR_ChisloAtomIogoElemVMollekuleGor: TEdit;
+    FR_MolekulVesGorCaption: TEdit;
+    FR_MolekulVesGor: TEdit;
+    FR_PlotnGorCaption: TEdit;
+    FR_PlotnGor: TEdit;
+    FR_MicroSechZahvNeitrYadrIogoElementaToplivaCaption: TEdit;
+    FR_MicroSechZahvNeitrYadrIogoElementaTopliva: TEdit;
+    FR_MicroSechRassNeitrYadrIogoElemToplCaption: TEdit;
+    FR_MicroSechRassNeitrYadrIogoElemTopl: TEdit;
+    FR_MacroSechZahvNeitrMaterObolTvelaCaption: TEdit;
+    FR_MacroSechZahvNeitrMaterObolTvela: TEdit;
+    FR_MacroSechRassNeitrMaterOblTvelaCaption: TEdit;
+    FR_MacroSechRassNeitrMaterOblTvela: TEdit;
+    FR_MacroSechZahvNeitrKonstrMaterCassetCaption: TEdit;
+    FR_MacroSechZahvNeitrKonstrMaterCasset: TEdit;
+    FR_MacroSechRassNeitrKonstrMaterCassetCaption: TEdit;
+    FR_MacroSechRassNeitrKonstrMaterCasset: TEdit;
+    FR_MacroSechZahvNeitrMaterMatrCaption: TEdit;
+    FR_MacroSechZahvNeitrMaterMatr: TEdit;
+    FR_MacroSechRassNeitrMaterMatrCaption: TEdit;
+    FR_MacroSechRassNeitrMaterMatr: TEdit;
+    FR_DopDolGorvToplComposCaption: TEdit;
+    FR_DopDolGorvToplCompos: TEdit;
+    FR_DolGorOrObogashCombobox: TComboBox;
+    FR_DolGorOrObogash: TEdit;
+    Button4: TButton;
+    ScrollBox4: TScrollBox;
+    Panel6: TPanel;
+    GridPanel14: TGridPanel;
+    Panel8: TPanel;
+    Panel9: TPanel;
+    Panel10: TPanel;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    Edit4: TEdit;
+    Edit5: TEdit;
+    Edit6: TEdit;
+    Edit7: TEdit;
+    Edit8: TEdit;
+    Edit9: TEdit;
+    Edit10: TEdit;
+    Edit11: TEdit;
+    Edit12: TEdit;
+    Edit13: TEdit;
+    Panel7: TPanel;
+    GridPanel15: TGridPanel;
+    Edit1: TEdit;
+    Edit14: TEdit;
+    Edit16: TEdit;
+    Edit17: TEdit;
+    Edit19: TEdit;
+    Edit20: TEdit;
+    Edit22: TEdit;
+    Edit23: TEdit;
+    Edit25: TEdit;
+    Edit26: TEdit;
+    Edit28: TEdit;
+    Edit29: TEdit;
+    Edit31: TEdit;
+    Edit32: TEdit;
+    ComboBox1: TComboBox;
+    TabSheet9: TTabSheet;
+    GridPanel16: TGridPanel;
+    DarkThemeModeCheckBox: TCheckBox;
+    TR_Excel: TButton;
+    ToFr: TButton;
+    Panel11: TPanel;
+    Panel12: TPanel;
+    Panel13: TPanel;
+    Panel14: TPanel;
+    Image1: TImage;
+    Image2: TImage;
+    GridPanel17: TGridPanel;
+    Panel15: TPanel;
+    Panel16: TPanel;
+    Panel17: TPanel;
+    Panel18: TPanel;
+    FR_excelOut: TButton;
+    procedure FormCreate(Sender: TObject);
+
+    procedure MainControllerChange(Sender: TObject);
+    procedure reactorGroupContextPopup(Sender: TObject; MousePos: TPoint;
+      var Handled: Boolean);
+    procedure FormResize(Sender: TObject);
+    procedure AcceptStartDataBtnClick(Sender: TObject);
+    procedure TasksControllClick(Sender: TObject);
+    procedure TrControllerChange(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure FR_DolGorOrObogashComboboxSelect(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure FrControllerChange(Sender: TObject);
+    procedure reactorGroupEnter(Sender: TObject);
+    procedure ComboBox1Change(Sender: TObject);
+    procedure DarkThemeModeCheckBoxClick(Sender: TObject);
+    procedure ToFrClick(Sender: TObject);
+    procedure TR_ExcelClick(Sender: TObject);
+    procedure FR_excelOutClick(Sender: TObject);
+
+
+
+
+
+
+
+  private
+    { Private declarations }
+  public
+    
+  end;
+
+
+
+var
+  Mars: TMars;
+  //---------------------------- APP STATE (REACT DATA)
+
+  ExcelApp : OleVariant;
+
+  materialsIsset : bool;
+  termoIsset : bool;
+  MarsTIsset : bool;
+  phisTisset : bool;
+  physicsIsset : bool;
+
+  notTypicalFuelMaterial : bool;
+  notTypicalMatrixMaterial : bool;
+  notTypicalCassetteMaterial : bool;
+  notTypicalShellMaterial : bool;
+
+  reactorType : String;
+  сassetteType : String;
+  shellMaterial : String;
+  сassetteMaterial : String;
+  matrixMaterial : String;
+  fuelMaterial : String;
+  ErrText : String;
+
+  iter : integer;
+  iter1: integer;
+  iter2 : integer;
+  ip : integer;
+  Nvf : integer;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  //-----------------------------------------------------TR DATA
+
+  prim,                        // признаки первого входа в данные по материалу
+  prit: integer;                // и топливу
+  Polinom,                     // Признак выбора процедуры расчета полиномов
+  String_data: string;
+
+  Time_calcalation: integer;     // время расчета
+  Redate: boolean;               // признак возврата к выбору варианта
+
+  Km: extended;                  // масштабный коэффициент формы
+  StTime,EndTime: TDateTime;    // Даты
+  Err_txt,                      // Текст сообщения об ошибке ввода
+  FileBase: string;             // Имя файла шаблона EXCEL
+  FileName: string;             // Имя файла результата
+
+// параметры выбора варианта
+  Kmk,                         // признак вида кассеты
+  Kmr,                         // признак типа реактора
+  Kmz,                         // признак выбранного материала оболочки
+  Kmkm,                        // признак выбранного материала кассеты
+  Kmmm,                        // признак выбранного материала матрицы
+  Kmtm,                        // признак выбранного материала матрицы из топлива
+  Kmt: string;                 // признак выбранного топлива
+
+// Тип решаемой задачи
+  i,                           // признак вида кассеты
+  prr: byte;                    // признак типа реактора
+
+  k,                           // номер решаемой задачи при тепловом расчете
+  t,                           // кампания, час
+  nr,                          // мощность реактора
+// Активная Зона
+//****************геометрия
+  vaz,                         // объем A3
+  daz,                         // диаметр A3
+  haz,                         // высота A3
+  hkd,                         // отношение высоты A3 к ее диаметру
+  nks,                         // число кассет в A3
+  dlk,                         // толщина шестигранного кожуха кассеты
+  dltr,                        // толщина цилиндрической обечайки кассеты
+  rvit,                        // радиус окружности, описанной вокруг кассеты
+  dekv,                        // эквивалентный диаметр ячейки
+  kappa2,                      // геометрический параметр A3
+
+//************** тепловой расчет
+  p,                           // давление теплоносителя
+  gaz,                         // расход теплоносителя через A3
+  wsr,                         // среднее значение скорости теплоносителя в A3
+  tvh,                         // температура теплоносителя на входе в A3
+  tvih,                        // температура теплоносителя на выходе из A3
+  tviks,                       // температура теплоносителя на выходе из кассет
+  tvimk,                       // температура теплоносителя на выходе из МКП
+  fjc,                         // площадь сечения ячейки
+  ftv,                         // площадь сечения ячейки, занимаемая твэлом
+  ftop,                        // площадь сечения ячейки, занимаемая топливом
+  fob,                         // площадь сечения ячейки, занимаемая материалом оболочки
+  fpr,                         // площадь проходного сечения кассеты
+  fk,                          // площадь сечения ячейки, занимаемая конструкционным материалом кассеты
+  fh20,                        // площадь сечения ячейки, занимаемая водой
+  qmax,                        // максимальный тепловой поток в центр кассеты
+  qkr,                         // критический тепловой поток в A3
+  qsr,                         // средний тепловой поток в A3
+  le,                          // доля A3, занятая экономайзером
+  rtop,                        // доля топлива в ячейке
+  rh20,                        // доля воды в ячейке A3
+  rk,                          // доля конструкционных материалов кассеты в ячейке
+  rob,                         // доля материала оболочек твэла в ячейке
+  rg,                          // доля горючег в топливной композиции
+  aa,                          // коэффициент при вычислении доли высоты A3, занимаемой экономайзерным участком
+  qv,                          // энергонапряженность A3
+  saz,                         // поверхность нагрева A3
+  kz,                          // коэффициент неравномерности распределения тепловыделения по высоте A3
+  kr,                          // коэффициент неравномерности распределения тепловыделения по радиусу
+  tmax,                        // максимально возможная температура теплоносителя на выходе из A3
+  ttmax,                       // максимальная температура топлива
+  dks,                         // диаметр кассеты
+  rpr,                         // гидравлический радиус кассеты
+  kn,                          // коэффициент перегрузки по мощности
+  kg,                          // коэффициент уменьшения расхода
+  tsr,                         // средняя температура замедлителя в A3
+  ts,                          // температура насыщения в A3
+  dlq,                         // предельно допустимое выгорание
+  ddlq,                        // действительное предельно допустимое выгорание
+  dlef,                        // эффективная добавка
+  kq,                          // запас по кризису в предыдущей точке расчета
+  kqp,                         // запас по кризису в последующей точке расчета
+  kqd,                         // допустимый запас по кризису
+  ckt,                         // доля теплоносителя, приходящаяся на МКП
+  cgk,                         // доля расхода теплоносителя протекающего через кассеты
+  tkssr,                       // средняя температура теплоносителя в кассете
+  vkssr,                       // средний удельный объем теплоносителя в кассете
+  vazsr,                       // средний удельный объем замедлителя в A3
+  iz,                          // текущее значение энтальпии при расчете запаса по кризису
+  ivh,                         // энтальпия теплоносителя на входе в A3
+  ivimk,                       // энтальпия теплоносителя на выходе из МКП
+  ivih,                        // энтальпия теплоносителя на выходе из A3
+  is1,                         // энтальпия воды на линии насыщения
+  iss,                         // энтальпия насыщенного пара
+  iviks,                       // энтальпия теплоносителя на выходе из кассет
+  vvimk,                       // удельный объем теплоносителя на выходе из межкассетного пространства
+  vvh,                         // удельный объем теплоносителя на входе в A3
+  vs,                          // удельный объем воды на линии насыщения
+  vss,                         // удельный объем насыщенного пара
+  visr,                        // средний удельный объем теплоносителя на испарительном участке
+  vesr,                        // средний удельный объем теплоносителя на экономайзерном участке
+  vmksr,                       // средний удельный объем теплоносителя в межкассетном пространстве
+  wvhd,                        // действительное значение скорости теплоносителя на входе в A3
+  wvh,                         // заданное среднее значение скорости теплоносителя на входе в A3
+// твэл
+  dtv,                         // диаметр твэла
+  ztv,                         // число твэлв в кассете
+  zr,                          // число рядов в кассете
+  dlob,                        // толщина оболочки твэла
+  dltv,                        // зазор между твэлами
+  rh20k,                       // доля воды в кассете
+  dlmk,                        // зазор между кассетами
+  dtop,                        // диаметр топливного стержня
+  a,                           // коэффициент при вычислении диаметра твэла
+// Горючее
+  gg,                          // масса горючего на конец кампании
+  ggnk,                        // масса горючего на начало кампании
+  rog,                         // плотность горючего
+  m,                           // молекулярный вес горючего
+  xnk,                         // обогащение на начало кампании
+  xkk,                         // обогащение на конец кампании
+  rdop,                        // доля горючего в топливной композиции
+// Паросодержание
+  fi,                          // среднее истинное объемное паросодержание
+  betsr,                       // среднее расходное объемное паросодержание
+  c,                           // коэффициент при расчете истинного объемного паросодержания
+  x,                           // массовое паросодержание на выходе из A3
+  xk,                          // массовое паросодержание на выходе из кассет
+// Физические характеристики компонентов
+  mju,                         // динамическая вязкость теплоносителя
+  ljob,                        // коэффициент теплопроводности материала оболочки твэла
+  ljhe,                        // коэффициент теплопроводности  гелия
+  ljt,                         // коэффициент теплопроводности материала топлива
+  roh20,                       // плотность воды
+// Физический расчет
+  fr,                          // критерий Фруда
+  re,                          // критерий Рейнольдса
+  fin,                         // нейтронный поток
+  kt1,kt2,                     // первая и вторая температурные поправки
+  kef,                         // эффективный коэффициент размножения нейтронов
+  ksh20,                       // замедляющая способность воды при t=20 град
+  kssis,                       // замедляющая способность ячейки
+  kvosp,                       // коэффициент воспроизводства Рu-239
+  dlz,                         // шаг изменения текущей координаты при вычислении запаса по кризису
+  el2,                         // квадрат длины диффузии
+  eps,                         // коэффициент размножения на быстрых нейтронах
+  vt,                          // объем топливной композиции
+  dlhe,                        // толщина гелиевого зазора
+  dlg5,                        // масса выгоревшего за кампанию U-235
+  kv,                          // объемный коэффициент неравномерности выгорания топлива в A3
+  nh20,                        // концентрация ядер водорода в ячейке
+  ni,                          // число атомов i-ro элемента в молекуле горючего
+  nii,                         // концентрация ядер i-ro элемента в ячейке
+  nu,                          // число атомов урана в молекуле горючего
+  n5,                          // концентрация ядер U-235 в ячейке A3
+  n8,                          // концентрация U-238 в ячейке A3
+  gpu,                         // масса плутония
+  g5,                          // масса U-235
+  g5nk,                        // масса U-235 на начало кампании
+  g8,                          // масса U-238 в A3
+  z,                           // текущая координата
+  tng,                         // температура нейтронного газа
+  tau,                         // возраст нейтронов
+  taumax,                      // время до наступления максимального отравления реактора
+  sah20,                       // микросечение захвата нейтронов молекулами воды
+  sai,                         // микросечение захвата нейтронов ядрами i-ro элемента топлива
+  sa5,                         // микросечение захвата нейтронов U-235
+  sa8,                         // микросечение захвата нейтронов U-238
+  sf5,                         // микросечение деления для U-235
+  siah20,                      // макросечение захвата нейтронов молекулами воды для ячейки
+  siai,                        // макросечение захвата нейтронов ядрами i-ro элемента топлива
+  siajch,                      // макросечение захвата нейтронов ячейкой A3
+  siak,                        // макросечение захвата нейтронов конструкционным материалом кассеты для ячейки A3
+  siak1,                       // макросечение захвата нейтронов конструкционным материалом кассеты
+  sisak,                       // макросечение захвата нейтронов матералами кассеты
+  siam,                        // макросечение захвата нейтронов материалом матрицы для ячейки
+  siam1,                       // макросечение захвата нейтронов материалом матрицы
+  siob,                        // макросечение захвата нейтронов материалом оболочки твэла для ячейки
+  siob1,                       // макросечение захвата нейтронов материалом оболочки
+  siash1,                      // относительное шлакование реактора
+  siaxe,                       // макросечение захвата нейтронов X-135 для ячейки A3
+  sia5,                        // макросечение захвата нейтронов U-235 для ячейки A3
+  sia8,                        // макросечение захвата нейтронов U-238 для ячейки A3
+  sif,                         // макросечение деления U-235 для ячейки A3
+  sish20,                      // макросечение рассеяния нейтронов молекулами воды для ячейки
+  sisi,                        // макросечение рассеяния нейтронов ядрами i-ro элемента топлива для ячейки A3
+  sisjch,                      // макросечение рассеяния нейтр ячейкой A3
+  sisk,                        // макросечение рассеяния нейтронов конструкционными материалами кассеты для ячейки A3
+  sisk1,                       // макросечение рассеяния нейтронов конструкционными материалами кассет
+  sism,                        // макросечение рассеяния нейтронов материалом матрицы для ячейки
+  sism1,                       // макросечение рассеяния нейтронов материалами матрицы
+  sisob, sisob1,               // макросечение рассеяния нейтронов материалом оболочек
+  sis5,                        // макросечение рассеяния нейтронов U-235
+  sis8,                        // макросечение рассеяния нейтронов U-238
+  ssh20,                       // микросечение рассеяния нейтронов молекулами воды
+  ssi,                         // микросечение рассеяния нейтронов ядрами i-ro элемента топлива
+  ss5,                         // микросечение рассеяния нейтронов U-235
+  ss8,                         // микросечение рассеяния нейтронов U-238
+  siaob,siaob1,                // Макросечение захвата нейтронов материалом оболочки твэл
+  sisobl,                      // Макросечение рассеяния нейтронов материалом оболочки твэл
+  teta,                        // Коэффициент теплового использования на тепловых нейтронах
+  pb,                          // вероятность избежать утечки для быстрых нейтронов
+  prez,                        // вероятность избежать резонансного захвата
+  pt,                          // вероятность избежать утечки для тепловых нейтронов
+  kvospr,                      // коэффициент воспроизводства Pu-239
+  r1,r2: extended;              // вспомогательные коэффициенты
+  N_data, Ik: integer;              // Количество данных ЗАДАЧИ теплового расчета
+  Nv: byte;                     // номер аврианта расчета
+
+  PriTR,                        // Признак успешного выполнения теплового расчета
+  Pri_Data_Tr,                  // Признак задания данных теплового расчета
+  Pri_Data_Fr,                  // Признак задания данных физического расчета
+  ErrPri: boolean;               // Признак ошибки ввода
+
+  Ipo,                          // признак ввода обогащения или доли горючего
+  Ips:Integer;                  // признак выбранной программы счета
+
+
+
+implementation
+
+uses
+  Polin,plmn;
+
+{$R *.dfm}
+
+
+
+
+
+
+procedure TMars.AcceptStartDataBtnClick(Sender: TObject);
+var
+str_left, str_right : string;
+begin
+        notTypicalFuelMaterial := False;
+        notTypicalMatrixMaterial := False;
+        notTypicalCassetteMaterial := False;
+        notTypicalShellMaterial := False;
+
+    try
+      reactorType := reactorGroup.Items[reactorGroup.ItemIndex];
+      сassetteType := tvsTypeGroup.Items[tvsTypeGroup.ItemIndex];
+      shellMaterial := shellGroup.Items[shellGroup.ItemIndex];
+      сassetteMaterial := tvsMaterialGroup.Items[tvsMaterialGroup.ItemIndex];
+      matrixMaterial := matrixMaterialGroup.Items[matrixMaterialGroup.ItemIndex];
+      fuelMaterial := fuelMaterialGroup.Items[fuelMaterialGroup.ItemIndex];
+
+      if CompareStr(shellMaterial,'Другой') = 0 then
+      begin
+         showmessage('Нетипичный материал Оболочки, вам придется некоторые данные вводить вручную!');
+         notTypicalShellMaterial := True;
+      end;
+
+      if CompareStr(сassetteMaterial,'Другой') = 0 then
+      begin
+         showmessage('Нетипичный материал кассеты, вам придется некоторые данные вводить вручную!');
+         notTypicalCassetteMaterial := True;
+      end;
+
+      if CompareStr(matrixMaterial,'Другой') = 0 then
+      begin
+         showmessage('Нетипичный материал матрицы, вам придется некоторые данные вводить вручную!');
+         notTypicalMatrixMaterial := True;
+      end;
+
+      if CompareStr(fuelMaterial,'Другое') = 0 then
+      begin
+         showmessage('Нетипичный материал топлива, вам придется некоторые данные вводить вручную!');
+         notTypicalFuelMaterial := True;
+      end;
+
+
+      if notTypicalMatrixMaterial or notTypicalFuelMaterial then
+      begin
+        if notTypicalMatrixMaterial and not notTypicalFuelMaterial then
+          begin
+             showmessage('Материал матрицы не совпадает с топливом');
+             Exit
+          end;
+
+        if not notTypicalMatrixMaterial and notTypicalFuelMaterial then
+          begin
+             showmessage('Материал матрицы не совпадает с топливом');
+             Exit
+          end;
+
+        if notTypicalMatrixMaterial and notTypicalFuelMaterial then
+          begin
+
+          end;
+      end
+      else  if not notTypicalMatrixMaterial or not notTypicalFuelMaterial then
+
+      begin
+        IdStrings.SplitString (fuelMaterial, '+', str_left, str_right);
+         if CompareStr(matrixMaterial, str_right) <> 0 then
+          begin
+             showmessage('Материал матрицы не совпадает с топливом');
+             Exit
+          end;
+      end;
+
+      materialsIsset := true;
+      if CompareStr(reactorType, 'ВВРД') = 0 then
+        begin
+          MassRashParCaption.Enabled := false;
+          MassRashPar.Enabled := false;
+          TOfTeplOutputCaption.Enabled := true;
+          TOfTeplOutput.Enabled := true;
+        end;
+
+      if CompareStr(reactorType, 'ВВРК') = 0 then
+        begin
+          MassRashParCaption.Enabled := true;
+          MassRashPar.Enabled := true;
+          TOfTeplOutputCaption.Enabled := false;
+          TOfTeplOutput.Enabled := false;
+        end;
+
+        ReactorTypeInput.Text := reactorType;
+        CasseteTypeInput.Text := сassetteType;
+
+        if CompareStr(fuelMaterial, 'UO2+Сталь') = 0 then
+        begin
+            TeplTopliva.Text := IntToStr(12);
+        end;
+
+        if CompareStr(fuelMaterial, 'UO2+Циркаллой') = 0 then
+        begin
+            TeplTopliva.Text := IntToStr(14);
+        end;
+
+        if CompareStr(fuelMaterial, 'UO2+Силумин') = 0 then
+        begin
+            TeplTopliva.Text := IntToStr(120);
+        end;
+
+        if CompareStr(fuelMaterial, 'UAl3+Силумин') = 0 then
+        begin
+            TeplTopliva.Text := IntToStr(80);
+        end;
+
+        if CompareStr(fuelMaterial, 'UAl3+Циркаллой') = 0 then
+        begin
+            TeplTopliva.Text := IntToStr(17);
+        end;
+
+        if CompareStr(fuelMaterial, 'UZr+Циркаллой') = 0 then
+        begin
+            TeplTopliva.Text := IntToStr(15);
+        end;
+
+        if CompareStr(fuelMaterial, 'Другое') = 0 then
+        begin
+            TeplTopliva.Text := '';
+            TeplTopliva.TextHint := 'Введите';
+            TeplTopliva.ShowHint := true;
+        end;
+
+
+
+        if CompareStr(shellMaterial, 'Сталь') = 0 then
+        begin
+            TeplMaterialObolochki.Text := IntToStr(15);
+        end;
+
+        if CompareStr(shellMaterial, 'Циркаллой') = 0 then
+        begin
+            TeplMaterialObolochki.Text := IntToStr(17);
+        end;
+
+        if CompareStr(shellMaterial, 'Другой') = 0 then
+        begin
+            TeplMaterialObolochki.Text := '';
+            TeplMaterialObolochki.TextHint := 'Введите';
+            TeplMaterialObolochki.ShowHint := true;
+        end;
+
+
+
+
+
+
+      MainController.ActivePageIndex := 1;
+      TrController.ActivePageIndex := 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+
+
+    except
+      begin
+
+        showmessage('Введите все данные');
+      end;
+
+    end;
+
+
+
+
+
+
+end;
+
+function ChangeString(Str: string): string;
+var
+  Npoint: integer;
+  Str1,Str2: string;
+begin (* замена . на , *)
+  Npoint:=Pos('.',Str);                 // Номер позиции, в которой стоит .
+  Str1:=Copy(Str,1,Npoint-1);           // позиции до точки
+  Str2:=Copy(Str,Npoint+1,Length(Str)); // позиции после точки
+  ChangeString:=Concat(Str1,',',Str2);
+end; (* замена . на , *)
+
+
+procedure Input_err(X:string);
+begin
+  Err_txt:='Ошибка при задании параметра  ' +X;
+  MessageDlg(Err_txt, mtError,[mbOk], 0);
+end;
+
+
+procedure MarsT;
+label
+  10,20,30,40,50;
+begin (* Тепловой расчет *)
+  try
+    // НАЧАЛЬНЫЕ ЗНАЧЕНИЯ И КОНСТАНТЫ
+    qsr:=7e05;      // средний тепловой потока в A3   +
+    kn:=1.2;        // коэффициент перегрузки по мощности      +
+    kg:=0.85;       // коэффициент уменьшения расхода           +
+    ckt:=0.03;      // доля тепла, выделяемого в МКП             +
+    dlef:=80;       // эффективная добавка на отражатель, мм     +
+    kqd:=2.2;       // допустимый запас по кризису                +
+    dlz:=20;        // шаг изменения текущей координаты при вычислении запаса по кризису   +
+    // Число твэлов в кассете   +
+    ztv:=1+3*zr+3*zr*zr;
+    // объем топливной композиции
+    if k = 7 then
+      vt:=7.85E-4*(dtv-2*dlob-2*dlhe)*(dtv-2*dlob-2*dlhe)* ztv*nks*haz
+    else
+      vt:=0.0538*kv*nr*t/dlq;
+
+    if ((Kmr='ВВРД')and(p< 1)) then
+    begin  (* 1 *)
+      tmax:=0.5*(tvih+tvh)+0.5*(tvih-tvh)*kn/kg+5;
+      if  Polinom='PLMN' then
+        p:=Pul(5,0,tmax)
+      else
+        p:=Pol(9,0,tmax);
+    end;   (* 1 *)
+
+
+
+    if Polinom='PLMN' then
+    begin
+        ts:=Pul(10,p,0);
+
+    end
+    else
+    begin
+        ts:=Pol(8,p,0);   // температура насыщения
+    end;
+
+    // Средняя  температура насыщения
+    if Kmr='ВВРК' then
+    begin
+       tvih:=ts;
+
+    end;
+
+
+    tsr:=(tvh+tvih)/2;
+
+
+    // Энтальпии теплоносителя на входе в A3 и выходе из АЗ
+    if Polinom='PLMN' then
+    begin
+      ivh:=Pul(2,p,tvh);
+      ivih:=  Pul(2,p,tvih);
+      is1:=Pul(6,0,Pul(10,p,0));
+      iss:=Pul(11,0,Pul(10,p,0));
+
+    end
+    else
+    begin
+      ivh:=Pol(1,p,tvh);
+      ivih:=Pol(1,p,tvih);
+      is1:=Pol(11,p,0);    // Энтальпия воды на линии насыщения
+      iss:=Pol(19,p,0);    // Энтальпия насыщенного пара
+    end;
+    // расход теплоносителя через A3
+    if Kmr='ВВРД' then
+    begin
+       gaz:=1.0E3*nr/(ivih-ivh);
+
+    end
+    else
+    begin
+       gaz:=1.0E3*nr/(is1 -ivh+x*(iss-is1));
+    end;
+
+    //  удельный объем теплоносителя на входе в A3
+    if Polinom='PLMN' then
+      vvh:=Pul(3,p,tvh)
+    else
+      vvh:=Pol(3,p,tvh);
+
+    // Параметры теплоносителя на выходе из межкассетного пространства
+    ivimk:=1.0E3*nr*ckt/(gaz*(1-cgk))+ivh;  //  энтальпия
+
+    if Polinom='PLMN' then
+    begin
+      tvimk:=Pul(1,p,ivimk);
+
+      vvimk:=Pul(3,p,tvimk);
+
+    end
+    else
+    begin
+      tvimk:=Pol(2,p,ivimk);                  //  температура
+      vvimk:=Pol(3,p,tvimk);                  //  удельный объем
+    end;
+    if Kmr='ВВРК' then
+    begin (* 4 *)
+      if Polinom='PLMN' then
+      begin
+        vs:=Pul(7,0,ts);
+        vss:=Pul(12,0,Pul(10,p,0));
+
+      end
+      else
+      begin
+        vs:=Pol(13,0,ts);    // удельный объем воды на линии насыщения
+        vss:=Pol(20,p,0);    // удельный объем  насыщенного пара
+      end;
+      // средний удельный объем теплоносителя на экономайзерном участке
+      vesr:=0.5*(vvh+vs);
+
+    end;  (* 4 *)
+    // средний удельный объем теплоносителя в межкассетном пространстве
+    vmksr:=2/( 1/vvh+1/vvimk);
+
+    if k< 3 then
+    begin  (* 5 *)
+10:   a:=2*(dlob+dlhe+1e-09*qsr*vt/nr);
+      dtv:=a+Sqrt(a*a-4*(dlob+dlhe)*(dlob+dlhe));  // диаметр твэла
+
+    end; (* 5 *)
+20: dtop:=dtv-2*(dlob+dlhe);            // диаметр топливного стержня
+    ftv:=0.785*ztv*dtv*dtv;             // площадь сечения ячейки, занимаемая твэлом
+    ftop:=0.785*ztv*dtop*dtop;          // площадь сечения ячейки, занимаемая топливом
+    fob:=Pi*(dtv-dlob)*dlob*ztv;        // площадь сечения ячейки, занимаемая материалом оболочки
+    rpr:=zr*(dtv+dltv)+(dtv+dltv)/1.73;   // гидравлический радиус кассеты
+    rvit:=rpr+dlk/0.865;                  // радиус окружности, описанной вокруг кассеты
+    dks:=2*(rvit+dltr);                   // диаметр кассеты
+    fpr:=2.605*rpr*rpr-ftv;               // площадь проходного сечения кассеты
+    dekv:=4*fpr/(6*rpr+Pi*dtv*ztv);       // эквивалентный диаметр ячейки
+
+    // площадь сечения ячейки, занимаемая конструкционным материалом кассеты
+    fk:=Pi*(dks-dltr)*dltr+3*dlk*(rpr+rvit);
+
+    if k = 1 then
+    begin (* ЗАДАЧА 1 *)
+      fjc:=(ftv+fk)/(1-rh20);                   // площадь сечения ячейки
+      // зазор между кассетами
+      if i = 0 then
+        dlmk:=sqrt(fjc/0.867)-dks;
+      if i = 6 then
+        dlmk:=sqrt(fjc/0.867)-0.867*dks;
+    end  (* ЗАДАЧА 1 *)
+    else
+    begin (* площадь сечения ячейки для других ЗАДАЧ *)
+      if i = 0 then
+        fjc:=0.867*(dks+dlmk)*(dks+dlmk);
+      if i = 6 then
+        fjc:=0.651*(dks+dlmk/0.867)*(dks+dlmk/0.867);
+    end;  (* 9 *)
+
+    fh20:=fjc-ftv-fk;    // площадь сечения ячейки, занимаемая водой
+    rtop:=ftop/fjc;      // доля топлива в ячейке
+    rob:=fob/fjc;        // доля материала оболочек твэла в ячейке
+    rk:=fk/fjc;          // доля конструкционных материалов кассеты в ячейке
+    rh20:=fh20/fjc;      // доля воды в ячейке A3
+
+30: if k < 5 then
+    begin  (* ЗАДАЧИ 1-4 *)
+      if k = 3 then
+        hkd:=1;         // ПОЧЕМУ ????
+      daz:=Exp(0.3333*Ln(1000*vt/(0.785*rtop*hkd)));  // диаметр A3
+      nks:=0.785*daz*daz/fjc;                         // число кассет в A3
+      if k = 3 then
+        haz:=1000* vt/nks/fjc/rtop      // высота АЗ
+      else
+        haz:=daz*hkd;
+    end (* ЗАДАЧИ 1-4 *)
+    else
+    begin (* ЗАДАЧИ 5-7 *)
+50:   daz:=sqrt((nks*fjc)/0.785);                  // диаметр A3
+      if k <> 7 then
+        haz:=1000*vt/nks/fjc/rtop;   // высота АЗ
+    end; (* ЗАДАЧИ 5-7 *)
+    wvhd:=1E06*gaz*cgk*vvh/fpr/nks;    // действительное значение скорости теплоносителя на входе в A3
+    if((k<4)or (k = 6)) then
+    begin  (*  ЗАДАЧИ 1-3 и 6  *)
+      if Abs(wvhd-wvh) > 0.05 then
+      begin (* 13 *)
+        if k = 3 then
+        begin
+          nks:=nks*wvhd/wvh;
+          goto 50;
+        end
+        else
+        begin (* ЗАДАЧИ 1-2 и 6 *)
+          if i <> 4 then
+            dltv:=(1.73*Sqrt((fpr*wvhd/wvh+ftv)/2.605)-(1.73*zr+1)*dtv)/( 1.73*zr+1)
+          else
+            dltv:=(Sqrt(fpr*wvhd/wvh+ftv)-zr*dtv)/zr;
+          goto 20;
+        end; (* ЗАДАЧИ 1-2 и 6 *)
+      end;   (* 13 *)
+    end;  (*  ЗАДАЧИ 1-3 и 6  *)
+    // энтальпия и температура теплоносителя на выходе из кассет
+    iviks:=ivh+(1000*nr*(1-ckt)/(gaz*cgk));
+
+    if Kmr='ВВРД' then
+      if  Polinom='PLMN' then
+        tviks:=Pul(1,p,iviks)
+      else
+        tviks:=Pol(2,p,iviks)
+    else
+    begin  (* 15 *)
+      xk:=(iviks-is1 )/(iss-is1);
+      tviks:=ts;
+    end;    (* 15 *)
+    // поверхность нагрева A3
+40: saz:=1.0e-6*pi*dtv*haz*ztv*nks;    // поверхность нагрева A3
+    kz:=1.57*haz/(haz+2.0*dlef)/Sin(1.57*haz/(haz+2.0*dlef)); // к-т неравномерности распределения тепловыделения по высоте A3
+    qsr:=1.0E6*nr/saz;  // средний тепловой поток в A3
+    qmax:=qsr*kr*kz;    // максимальный тепловой поток в центр кассеты
+    kqp:=1000;
+    z:=0.0;
+    // Определение критического теплового потока в A3 по высоте
+    Repeat   (* цикл  *)
+      kq:=kqp;
+      iz:=ivh+0.5*(iviks-ivh)*(sin(pi*z/(haz+2*dlef))/sin(0.5*pi*haz/(haz+2*dlef))+1);    // текущее значение энтальпии
+      qkr:=8.45e5*Exp(0.2*Ln(kr*wvhd/vvh))*Exp(1.2*Ln(1+(is1-iz)/(iss-is1)))*(1-0.0355*p);// критический тепловой поток в A3
+      kqp:=qkr/(qmax*cos(pi*z/(haz+2*dlef)));    // запас по кризису
+      z:=z+dlz;
+    Until kqp > kq;   (* цикл  *)
+    kq:=kqp;
+    if k <> 7 then
+    begin  (* ЗАДАЧИ 1-6 *)
+      if k< 3 then
+      begin   (* ЗАДАЧИ 1-2 *)
+        if((kq-kqd)*(kq-kqd))> 0.025 then
+        begin (* 18 *)
+          qsr:=qsr*kq/kqd;
+          goto 10;
+        end; (* 18 *)
+      end  (* ЗАДАЧИ 1-2 *)
+      else
+      begin  (* ЗАДАЧИ 3-6 *)
+        if kq < kqd then
+        begin (* 20 *)
+          if k = 4 then
+          begin   (* 21 *)
+            vt:=vt*kqd/kq;
+            goto 30;
+          end (* 21 *)
+          else
+          begin (* 22 *)
+            haz:=haz*kqd/kq;
+            goto 40;
+          end; (* 22 *)
+        end; (* 20 *)
+      end; (* ЗАДАЧИ 3-6  *)
+    end; (* ЗАДАЧИ 1-6 *)
+    if Kmr='ВВРК' then
+    begin (* 23 *)
+      // доля A3, занятая экономайзером
+      aa:=2*(is1 - ivh)/(iviks-ivh)-1;      // ????
+      le:=0.5+(haz+2*dlef)/(Pi*haz)*ArcTan(aa/Sqrt(1-aa*aa))*Sin(Pi*haz/(2*(haz+2*dlef)));
+      // среднее расходное объемное паросодержание
+      betsr:=(vss/(vss-vs))*(1-vs/((vss-vs)*xk)*Ln(xk*(vss/vs-1)+1));
+      wsr:=wvhd* vs/vvh;   // среднее значение скорости теплоносителя в A3
+      dekv:=4*fpr/(6*rpr+Pi*dtv*ztv);   // эквивалентный диаметр ячейки
+      if Kmr='ВВРК' then
+      begin (* 24 *)
+        aa:=wsr*(1-0.5*xk)/(1-betsr);
+        fr:=aa*aa/(9.81e-03*dekv);    // квадрат критерия Фруда
+        if Polinom='PLMN' then
+          mju:=Pul(24,vs,ts)*1E-06
+        else
+          mju:=Pol(6,p,ts);        // динамическая вязкость теплоносителя
+        re:=wsr*( 1-0.5 *xk)*dekv* 1E-03/(mju* vs);      // критерий Рейнольдса
+        // молекулярный вес горючего
+        m:=4*Exp(0.125*Ln(re))*Sqrt(vs/vss)*(0.13+0.12*Exp(0.375*Ln(fr)));
+        // среднее истинное объемное паросодержание
+        c:=(1+0.046*m)/(0.176+2.76*m);
+        fi:=betsr*(1-c*( 1-betsr)/(1.04-betsr));
+        // средний удельный объем теплоносителя на испарительном участке
+        visr:=1/((1-fi)/vs+fi/vss);
+      end; (* 24 *)
+    end; (* 23 *)
+    rh20k:=fpr/(rh20*fjc);       // доля воды в кассете
+    // средний удельный объем замедлителя в A3
+    if Kmr='ВВРД' then
+    begin (* 25 *)
+      tkssr:=0.5*(tviks+tvh);
+      if Polinom='PLMN' then
+        vkssr:=Pul(3,p,tkssr)
+      else
+        vkssr:=Pol(3,p,tkssr);
+      vazsr:=1/(rh20k/vkssr+(1-rh20k)/vmksr);
+    end  (* 25 *)
+    else
+      vazsr:=1/((( 1-le)/visr+le/vesr)*rh20k+(1-rh20k)/vmksr);
+    vaz:=0.785E-03*haz*daz*daz;     // объем A3
+    vt:=rtop*vaz;                   // объем топливной композиции
+    qv:=1E06*nr/vaz;                // энергонапряженность A3
+    ddlq:=0.0538*kv*nr*t/vt;        // действительное предельно допустимое выгорание
+    ljhe:=0.143*Exp(0.73*Ln((ts+273)/273));    // коэффициент теплопроводности  гелия
+    ttmax:=ts+(dlob/ljob+dtop/4/ljt+dlhe/ljhe)*1E-03*qmax+10;   // максимальная температура топлива
+    hkd:=haz/daz;      // отношение высоты A3 к ее диаметру
+    MarsTIsset := true;
+
+  except
+    ShowMessage('Ошибка при выполнении теплового расчета');
+    MarsTIsset := False;
+    exit;
+  end;
+end; (* Тепловой расчет *)
+
+
+
+procedure MarsF(Ipo,Ips:Integer);  (* Физический  расчет *)
+var
+  rez :real;     // вспомогательный параметр
+  NIT:Byte;      // счетчик
+begin (* физический расчет  *)
+  try
+  NIT:=1;
+  // максимальное количество  U-235 на начало кампании
+  if ipo = 1 then
+  begin (* 1 *)
+    ggnk:=m*g5nk/(235*xnk);
+    rg:=ggnk/(vaz*rtop*rog);
+  end (* 1 *)
+  Else
+    xnk:=m*g5nk/(235*ggnk);
+  gg:=ggnk-m*dlg5/235;     // масса горючего на конец кампании
+  xkk:=m*g5/(235*gg);      // Обогащение  на конец кампании
+
+  // концентрации
+  n8:=nu*a*rog*rg*rtop*(1-xnk)/m;
+  n5:=nu*a*rog*rg*rtop*xkk/m;
+  nii:=ni*a*rog*rg*rtop/m;
+  nh20:=a*roh20*rh20/18;
+
+  // макросечения захвата нейтронов
+  sia5:=n5*sa5;   sia8:=n8*sa8;
+  sis5:=n5*ss5;   sis8:=n8*ss8;
+  sif:=n5*sf5;
+
+  siai:=nii*sai;   sisi:=nii*ssi;
+  siah20:=nh20*sah20;
+  sish20:=nh20*ssh20;
+
+  siak:=siak1*rk;
+  siaob:=siaob1*rob;
+  siam:=siam1*rtop*(1-rg);
+  sisk:=sisk1*rk;
+  sisob:=sisob1*rob;
+  sism:=sism1*rtop*(1-rg);
+
+  siajch:=sia5+sia8+siai+siah20+siak+siaob+siam;
+  sisjch:=sis5+sis8+sisi+sish20+sisk+sisob+sism;
+  kssis:=ksh20*roh20*rh20;                   // замедляющая способность ячейки
+  kt1:=0.8862*sqrt(293/(273+tsr));           // поправка на темпаратуру замедлителя
+  tng:=(273+tsr)*(1+1.4*siajch*kt1/kssis);   //  температура нейтронного газа
+  kt2:=0.8862*sqrt(293/tng);                 // поправка на температуру
+
+  fin:=3.1E16*nr/(vaz*sif*kt2);              // плотность нейтронного потока
+  r1:=24.05/(0.5*daz+dlef);
+  r2:=10*Pi/(haz+2.0*dlef);
+  kappa2:=r1*r1+r2*r2;
+  el2:=1/(3*kt2*siajch*(2.31*rh20*roh20+0.5*(1-rh20)));
+  // вероятность избежать утечки для тепловых нейтронов
+  pt:=1/(1+kappa2*el2);
+  tau:=31.4/(Sqrt(roh20*rh20)*Exp(1.5*Ln(1-rh20*(1-roh20))));   // возраст нейтронов
+  // вероятность избежать утечки для быстрых нейтронов
+  pb:=Exp(-kappa2 * tau);
+  // время до наступления максимального отравления реактора
+  taumax:=34.7*Ln(1/(0.72+0.61/(2.1+3E-13 *kt2*fin)));
+  if ips = 1 then
+  begin  (* на конец кампании *)
+    // макросечение захвата нейтронов X-135 для ячейки A3
+    siaxe:=0.2e-13*sif*kt2*fin*(Exp(-0.0756*taumax)-Exp(-0.1044*taumax))+
+      0.168E-13*fin*sif*kt2* Exp(-0.075 *taumax)/(2.1 *3E-13 *fin*kt2);
+      siash1:=50.0*a*dlg5/(235.0*vaz);
+  end  (* на конец кампании *)
+  else
+  begin (* на начало кампании *)
+    siaxe:=0;
+    siash1:=0;
+  end; (* на начало кампании *)
+
+  teta:=sia5/(siajch+siaxe+siash1);        // Коэффициент теплового использования на тепловых нейтронах
+  rez:=4*n8*Exp(0.42*Ln(sisjch/n8));
+  prez:=Exp(-rez/kssis);
+  eps:=1+0.109*Exp(-0.707*Ln(2*nh20/n8));  // коэффициент размножения на быстрых нейтронах
+  kef:=2.07*teta*eps*prez*pb*pt;           // эффективный коэффициент размножения нейтронов
+  r1:=0;
+
+  if ips = 1 then
+  begin (* на конец кампании *)
+    g5 :=(10+g5);  //*(( 1/teta-1)/(kef/(teta* 1.011)-1));
+    g5nk:=g5+dlg5;
+    if nit = 10 then
+      r1:=1;
+  end;  (* на конец кампании *)
+  except
+    begin
+      ShowMessage('Ошибка в подпрограмме физического расчета' + #10#13 +
+                  'ПРОВЕРЬТЕ ПРАВИЛЬНОСТЬ ВВОДА ИСХОДНЫХ ДАННЫХ');
+       Halt;
+    end;
+  end;
+End;  (* Физический  расчет *)
+
+procedure TMars.Button2Click(Sender: TObject);
+var tx: real;
+begin
+  k := TasksControll.TabIndex + 1;
+  //showmessage(floatToStr(k));
+  kmr := reactorType;
+  if CasseteTypeInput.Text = 'Шестигранная' then
+  begin
+    i := 6
+  end
+  else
+  begin
+    i:= 0
+  end;
+
+
+  Polinom:='PLMN';
+  //ShowMessage(kmr + Polinom);
+
+
+
+  //****************************ВВОД ГЛАВНЫХ ПАРАМЕТРОВ ДЛЯ ТР*********************************************
+
+  
+
+
+  try
+    String_data:=NOfReactor.Text;   // Мощность реактора, МВт
+    if Pos('.',String_data)= 0 then
+      nr :=StrToFloat(String_data)
+    else
+      nr:=StrToFloat(ChangeString(String_data));
+  except
+    Input_err(NOfReactorCaption.Text);
+    ErrPri:=True;
+    Abort;
+  end;
+
+  try
+    String_data:=AZCompany.Text;  // Кампания АЗ, час
+    if Pos('.',String_data)= 0 then
+      t :=StrToFloat(String_data)
+    else
+      t :=StrToFloat(ChangeString(String_data));
+
+    String_data:=TOfTeplInput.Text;  // Температура теплоносителя на входе в АЗ, град.С
+    if Pos('.',String_data)= 0 then
+      tvh :=StrToFloat(String_data)
+    else
+      tvh :=StrToFloat(ChangeString(String_data));
+
+    if kmr = 'ВВРК' then
+    begin
+      String_data:=MassRashPar.Text;  // Массовое расходное паросодержание
+      if Pos('.',String_data)= 0 then
+        x :=StrToFloat(String_data)
+      else
+        x :=StrToFloat(ChangeString(String_data));
+    end;
+
+    if kmr = 'ВВРД' then
+    begin
+      String_data:=TOfTeplOutput.Text;  // Температура теплоносителя на выходе из АЗ, град.С
+      if Pos('.',String_data)= 0 then
+        tvih :=StrToFloat(String_data)
+      else
+        tvih :=StrToFloat(ChangeString(String_data));
+    end;
+
+    String_data:=DavlTeplV1Konture.Text;    // Давление в первом контуре, МПа
+    if Pos('.',String_data)= 0 then
+      p :=StrToFloat(String_data)
+    else
+      p :=StrToFloat(ChangeString(String_data));
+
+    String_data:=OtnRashTeplCherezKassety.Text;   // Доля расхода теплоносителя через кассеты
+    if Pos('.',String_data)= 0 then
+      cgk :=StrToFloat(String_data)
+    else
+      cgk :=StrToFloat(ChangeString(String_data));
+
+    String_data:=TolshinaCylindrObechKassety.Text;  // Толщина трубы кожуха кассеты, мм
+    if Pos('.',String_data)= 0 then
+      dltr :=StrToFloat(String_data)
+    else
+      dltr :=StrToFloat(ChangeString(String_data));
+
+    String_data:=TolshinaKozhKasset.Text;  // Толщина шестигранного кожуха, мм
+    if Pos('.',String_data)= 0 then
+      dlk :=StrToFloat(String_data)
+    else
+      dlk :=StrToFloat(ChangeString(String_data));
+
+    String_data:=TolshObolochTvela.Text;   // Толщина оболочки твэла, мм
+    if Pos('.',String_data)= 0 then
+      dlob :=StrToFloat(String_data)
+    else
+      dlob :=StrToFloat(ChangeString(String_data));
+
+    String_data:=TolshGeliyZazor.Text;  // Толщина слоя гелия, мм
+    if Pos('.',String_data)= 0 then
+      dlhe :=StrToFloat(String_data)
+    else
+      dlhe :=StrToFloat(ChangeString(String_data));
+
+    String_data:=ChisloRyadovTvelov.Text;    // Число рядов твэл в кассете
+    if Pos('.',String_data)= 0 then
+      zr:=StrToFloat(String_data)
+    else
+      zr:=StrToFloat(ChangeString(String_data));
+
+    String_data:=KoefNeravnTeplovPoRadAz.Text;   // Радиальная неравномерность выгорания топлива
+    if Pos('.',String_data)= 0 then
+      kr:=StrToFloat(String_data)
+    else
+      kr:=StrToFloat(ChangeString(String_data));
+
+    String_data:=KoefNeravnVygoraniya.Text;  // Объемная неравномерность выгорания топлива
+    if Pos('.',String_data)= 0 then
+      kv:=StrToFloat(String_data)
+    else
+      kv:=StrToFloat(ChangeString(String_data));
+    //  Задание полиномов для вычисления тенмператур и эптальпий
+{ if MessageDlg('Использовать процедуру PLMN?', mtConfirmation, [mbYes, mbNo], 0, mbYes) = mrYes
+   then}
+    Polinom:='PLMN' {else Polinom:=''};
+    Application.ProcessMessages;
+  except
+    ShowMessage('Ошибка при вводе данных');
+  end;
+
+
+  try
+    begin
+    String_data:=TeplMaterialObolochki.Text;   // Теплопроводность материала оболочки, Вт/м К
+    if Pos('.',String_data)= 0 then
+      ljob:=StrToFloat(String_data)
+    else
+      ljob:=StrToFloat(ChangeString(String_data));      
+    end;
+  except
+    Input_err(TeplMaterialObolochkiCaption.Text);
+    ErrPri:=True;
+    Abort;
+  end;
+
+  try
+    begin
+    String_data:=TeplTopliva.Text;   // // Теплопроводность топлива, Вт/м К
+    if Pos('.',String_data)= 0 then
+      ljt:=StrToFloat(String_data)
+    else
+      ljt:=StrToFloat(ChangeString(String_data));      
+    end;
+  except
+    Input_err(TeplToplivaCaption.Text);
+    ErrPri:=True;
+    Abort;
+  end;
+
+
+
+
+
+
+
+
+
+
+     //****************************ВВОД ГЛАВНЫХ ПАРАМЕТРОВ ДЛЯ ТР*********************************************
+
+
+
+
+
+
+
+
+  //****************************ВВОД ДАННЫХ ИЗ ЗАДАЧ*********************************************
+
+
+  if k = 1 then
+  begin
+      // h/d
+     try
+     String_data:=HkdTask1.Text;
+          if Pos('.',String_data)= 0 then
+            hkd:=StrToFloat(String_data)
+          else
+            hkd:=StrToFloat(ChangeString(String_data));
+     except
+          Input_err(HkdTask1Caption.Text);
+          ErrPri:=True;
+          Abort;
+     end;
+
+    // Предельно допустимое выгорание, г/см3
+    try
+      String_data:=PredDopVigorTask1.Text;
+      if Pos('.',String_data)= 0 then
+        dlq:=StrToFloat(String_data)
+      else
+        dlq:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(PredDopVigorTask1Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+
+    // Заданное среднее значение скорости теплоносителя на входе  в АЗ, м/с
+    try
+      String_data:=ZadanSredZnachSkorTeplNaVhVazTask1.Text;
+      if Pos('.',String_data)= 0 then
+        wvh:=StrToFloat(String_data)
+      else
+        wvh:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(ZadanSredZnachSkorTeplNaVhVazTask1Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+
+    // Доля воды в ячейке АЗ
+    try
+      String_data:=DolVodVyachTask1.Text;
+      if Pos('.',String_data)= 0 then
+        rh20:=StrToFloat(String_data)
+      else
+        rh20:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(DolVodVyachTask1Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+
+    
+  end;
+
+
+  if k = 2 then
+  begin
+
+    // Отношение высоты АЗ к диаметру
+    try
+      String_data:=HkdTask2.Text;
+      if Pos('.',String_data)= 0 then
+        hkd:=StrToFloat(String_data)
+      else
+        hkd:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(HkdTask2Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+
+    // Зазор между кассетами, мм
+    try
+      String_data:=ZazorMezhdCassetTask2.Text;
+      if Pos('.',String_data)= 0 then
+        dlmk:=StrToFloat(String_data)
+      else
+        dlmk:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(ZazorMezhdCassetTask2Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+
+    // Предельно допустимое выгорание, г/см3
+    try
+      String_data:=PredDopVigorTask2.Text;
+      if Pos('.',String_data)= 0 then
+        dlq:=StrToFloat(String_data)
+      else
+        dlq:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(PredDopVigorTask2Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+
+    // Заданное среднее значение скорости теплоносителя на входе  в АЗ, м/с
+    try
+      String_data:=ZadanSredZnachSkorTeplNaVhodVazTask2.Text;
+      if Pos('.',String_data)= 0 then
+        wvh:=StrToFloat(String_data)
+      else
+        wvh:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(ZadanSredZnachSkorTeplNaVhodVazTask2Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+
+     
+  end;
+  //
+
+  if k = 3 then
+  begin
+    // Диаметр твэла, мм
+    try
+      String_data:=DiamTvelaTask3.Text;
+      if Pos('.',String_data)= 0 then
+        dtv:=StrToFloat(String_data)
+      else
+        dtv:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(DiamTvelaTask3Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+
+    // Зазор между твэлами, мм
+    try
+      String_data:=ZazorMezhdTvelamiTask3.Text;
+      if Pos('.',String_data)= 0 then
+        dltv:=StrToFloat(String_data)
+      else
+        dltv:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(ZazorMezhdTvelamiTask3Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+
+    // Зазор между кассетами, мм
+    try
+      String_data:=ZazorMezhdCassetTask3.Text;
+      if Pos('.',String_data)= 0 then
+        dlmk:=StrToFloat(String_data)
+      else
+        dlmk:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(ZazorMezhdCassetTask3Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+
+    // Предельно допустимое выгорание, г/см3
+    try
+      String_data:=PredDopVigorTask3.Text;
+      if Pos('.',String_data)= 0 then
+        dlq:=StrToFloat(String_data)
+      else
+        dlq:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(PredDopVigorTask3Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+
+    // Заданное среднее значение скорости теплоносителя на входе  в АЗ, м/с
+    try
+      String_data:=ZadanSredZnachSkorTeplNaVhodVazTask3.Text;
+      if Pos('.',String_data)= 0 then
+        wvh:=StrToFloat(String_data)
+      else
+        wvh:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(ZadanSredZnachSkorTeplNaVhodVazTask3Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+
+    
+  end;
+
+  if k = 4 then
+  begin
+
+    // Диаметр твэла, мм
+    try
+      String_data:=DiamTvelaTask4.Text;
+      if Pos('.',String_data)= 0 then
+        dtv:=StrToFloat(String_data)
+      else
+        dtv:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(DiamTvelaTask4Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+
+    // Зазор между твэлами, мм
+    try
+      String_data:=ZazorMezhdTvelamiTask4.Text;
+      if Pos('.',String_data)= 0 then
+        dltv:=StrToFloat(String_data)
+      else
+      dltv:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(ZazorMezhdTvelamiTask4Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+
+    // Зазор между кассетами, мм
+    try
+      String_data:=ZazorMezhdCassetTask4.Text;
+      if Pos('.',String_data)= 0 then
+        dlmk:=StrToFloat(String_data)
+      else
+        dlmk:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(ZazorMezhdCassetTask4Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+
+    // Отношение высоты АЗ к диаметру
+    try
+      String_data:=HkdTask4.Text;
+      if Pos('.',String_data)= 0 then
+        hkd:=StrToFloat(String_data)
+      else
+        hkd:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(HkdTask4Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+
+    // Предельно допустимое выгорание, г/см3
+    try
+      String_data:=PredDopVigorTask4.Text;
+      if Pos('.',String_data)= 0 then
+        dlq:=StrToFloat(String_data)
+      else
+        dlq:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(PredDopVigorTask4Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+    
+  end;
+
+  if k = 5 then
+  begin
+
+    // Диаметр твэла, мм
+    try
+      String_data:=DiamTvelaTask5.Text;
+      if Pos('.',String_data)= 0 then
+        dtv:=StrToFloat(String_data)
+      else
+        dtv:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(DiamTvelaTask5Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+
+    // Зазор между твэлами, мм
+    try
+      String_data:=ZazorMezhdTvelamiTask5.Text;
+      if Pos('.',String_data)= 0 then
+        dltv:=StrToFloat(String_data)
+      else
+        dltv:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(ZazorMezhdTvelamiTask5Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+
+    // Зазор между кассетами, мм
+    try
+      String_data:=ZazorMezhdCassetTask5.Text;
+      if Pos('.',String_data)= 0 then
+        dlmk:=StrToFloat(String_data)
+      else
+        dlmk:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(ZazorMezhdCassetTask5Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+
+    // Число кассет
+    try
+      String_data:=ChisloCassetTask5.Text;
+      if Pos('.',String_data)= 0 then
+        nks:=StrToFloat(String_data)
+      else
+        nks:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(ChisloCassetTask5Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+
+    // Предельно допустимое выгорание, г/см3
+    try
+      String_data:=PredDopVigorTask5.Text;
+      if Pos('.',String_data)= 0 then
+        dlq:=StrToFloat(String_data)
+      else
+        dlq:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(PredDopVigorTask5Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+    
+  end;
+
+  if k = 6 then
+  begin
+
+    // Диаметр твэла, мм
+    try
+      String_data:=DiamTvelaTask6.Text;
+      if Pos('.',String_data)= 0 then
+        dtv:=StrToFloat(String_data)
+      else
+        dtv:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(DiamTvelaTask6Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+
+    // Зазор между кассетами, мм
+    try
+      String_data:=ZazorMezhdCassetTask6.Text;
+      if Pos('.',String_data)= 0 then
+        dlmk:=StrToFloat(String_data)
+      else
+        dlmk:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(ZazorMezhdCassetTask6Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+
+    //  Число кассет
+    try
+      String_data:=ChisloCassetTask6.Text;
+      if Pos('.',String_data)= 0 then
+        nks:=StrToFloat(String_data)
+      else
+        nks:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(ChisloCassetTask6Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+
+    // Предельно допустимое выгорание, г/см3
+    try
+      String_data:=PredDopVigorTask6.Text;
+      if Pos('.',String_data)= 0 then
+        dlq:=StrToFloat(String_data)
+      else
+        dlq:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(PredDopVigorTask6Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+
+    // Заданное среднее значение скорости теплоносителя на входе  в АЗ, м/с
+    try
+      String_data:=ZadanSredZnachSkorTeplNaVhodVazTask6.Text;
+      if Pos('.',String_data)= 0 then
+        wvh:=StrToFloat(String_data)
+      else
+        wvh:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(ZadanSredZnachSkorTeplNaVhodVazTask6Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+    
+  end;
+
+  if k = 7 then
+  begin
+
+    // Диаметр твэла, мм
+    try
+      String_data:=DiamTvelaTask7.Text;
+      if Pos('.',String_data)= 0 then
+        dtv:=StrToFloat(String_data)
+      else
+        dtv:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(DiamTvelaTask7Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+
+    // Зазор между твэлами, мм
+    try
+      String_data:=ZazorMezhdTvelamiTask7.Text;
+      if Pos('.',String_data)= 0 then
+        dltv:=StrToFloat(String_data)
+      else
+        dltv:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(ZazorMezhdTvelamiTask7Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+
+    // Зазор между кассетами, мм
+    try
+      String_data:=ZazorMezhdCassetTask7.Text;
+      if Pos('.',String_data)= 0 then
+        dlmk:=StrToFloat(String_data)
+      else
+        dlmk:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(ZazorMezhdCassetTask7Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+
+    // Число кассет
+    try
+      String_data:=ChisloCassetTask7.Text;
+      if Pos('.',String_data)= 0 then
+        nks:=StrToFloat(String_data)
+      else
+        nks:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(ChisloCassetTask7Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+
+    // Высота АЗ, мм
+    try
+      String_data:=VisotaAzTask7.Text;
+      if Pos('.',String_data)= 0 then
+        haz:=StrToFloat(String_data)
+      else
+        haz:=StrToFloat(ChangeString(String_data));
+    except
+      Input_err(VisotaAzTask7Caption.Text);
+      ErrPri:=True;
+      Abort;
+    end;
+    
+  end;
+
+
+//****************************ВВОД ДАННЫХ ИЗ ЗАДАЧ*********************************************
+
+
+
+
+
+
+
+
+
+
+
+
+  MarsT();
+
+  
+ //****************************ЗАПОЛНЕНИЕ ТАБЛИЦЫ*********************************************
+  if MarsTIsset then
+  begin
+      TrController.TabIndex := 1;
+      ScrollBox2.VertScrollBar.Position := 0;
+      TR_TaskNumberResultOutput.Caption := 'Задача' + ' ' + IntToStr(TasksControll.TabIndex + 1);
+      TR_ReactorTypeResultOutput.Text := reactorType;
+      TR_CassetTypeResultOutput.Text := сassetteType;
+      TR_ShellMaterialTypeResultOutput.Text := shellMaterial;
+      TR_FuelTypeResultOutput.Text := fuelMaterial;
+
+      TabData.RowCount := 3;
+      Tab.RowCount := 3;
+      TabData.ColCount := 3;
+      Tab.ColCount := 3;
+      
+
+      if (TasksControll.TabIndex + 1 = 1) or (TasksControll.TabIndex + 1 = 2) then
+      begin
+        TabData.RowCount := 5;
+        if kmr = 'ВВРК' then
+          begin
+            Tab.RowCount := 27;
+          end;
+        if kmr = 'ВВРД' then
+          begin
+            Tab.RowCount := 24;
+          end;
+          
+      end
+      else
+      begin
+        TabData.RowCount := 6;
+        if kmr = 'ВВРК' then
+          begin
+            Tab.RowCount := 26;
+          end;
+        if kmr = 'ВВРД' then
+          begin
+            Tab.RowCount := 23;
+          end;
+      end;
+
+      with Tab do
+      begin
+        for iter1:=0 to ColCount do
+          for iter2:=0 to RowCount do
+            Cells[iter1,iter2]:='';
+      end;
+      with TabData do
+      begin
+        for iter1:=0 to ColCount do
+          for iter2:=1 to RowCount do
+            Cells[iter1,iter2]:='';
+      end;
+
+
+    TabData.ColWidths[0]:= Round(TabData.Width * 0.1);
+    TabData.ColWidths[1]:= Round(TabData.Width * 0.8);
+    TabData.ColWidths[2]:= Round(TabData.Width * 0.1);
+
+    for iter := 0 to TabData.RowCount -  1  do
+    begin
+      TabData.RowHeights[iter] := Round(TabData.Height / TabData.RowCount);
+    end;
+
+    Tab.ColWidths[0]:= Round(Tab.Width * 0.1);
+    Tab.ColWidths[1]:= Round(Tab.Width * 0.8);
+    Tab.ColWidths[2]:= Round(Tab.Width * 0.1);
+
+    for iter := 0 to Tab.RowCount - 1  do
+    begin
+      Tab.RowHeights[iter] := Round(Tab.Height / Tab.RowCount);
+    end;
+
+
+  // Построение заголовка таблицы результатов
+    with TabData do
+    begin 
+      Cells[0,0]:='   № ';
+      Cells[1,0]:='                 ПАРАМЕТР';
+      Cells[2,0]:=' ЗНАЧЕНИЕ';
+
+      if TasksControll.TabIndex + 1 = 1 then
+      begin
+      Cells[1,1]:= 'Отношение высоты АЗ к диаметру';
+      Cells[2,1]:= FloatToStr(hkd);
+      Cells[1,2]:= 'Предельно допустимое выгорание, г/см3';
+      Cells[2,2]:=FloatToStr(dlq);
+      Cells[1,3]:= 'Заданное среднее значение скорости теплоносителя на входе  в АЗ, м/с';
+      Cells[2,3]:=FloatToStr(wvh);
+      Cells[1,4]:= 'Доля воды в ячейке АЗ';
+      Cells[2,4]:=FloatToStr(rh20);
+      end;
+
+      if TasksControll.TabIndex + 1 = 2 then
+      begin
+      Cells[1,1]:= 'Отношение высоты АЗ к диаметру';
+      Cells[2,1]:= FloatToStr(hkd);
+      Cells[1,2]:= 'Зазор между кассетами, мм';
+      Cells[2,2]:=FloatToStr(dlmk);
+      Cells[1,3]:= 'Предельно допустимое выгорание, г/см3';
+      Cells[2,3]:=FloatToStr(dlq);
+      Cells[1,4]:= 'Заданное среднее значение скорости теплоносителя на входе  в АЗ, м/с';
+      Cells[2,4]:=FloatToStr(wvh);
+      end;
+
+      if TasksControll.TabIndex + 1 = 3 then
+      begin
+      Cells[1,1]:= 'Диаметр твэла, мм';
+      Cells[2,1]:= FloatToStr(dtv);
+      Cells[1,2]:= 'Зазор между твэлами, мм';
+      Cells[2,2]:=FloatToStr(dltv);
+      Cells[1,3]:= 'Зазор между кассетами, мм';
+      Cells[2,3]:=FloatToStr(dlmk);
+      Cells[1,4]:= 'Предельно допустимое выгорание, г/см3';
+      Cells[2,4]:=FloatToStr(dlq);
+      Cells[1,5]:= 'Заданное среднее значение скорости теплоносителя на входе  в АЗ, м/с';
+      Cells[2,5]:=FloatToStr(wvh);
+      end;
+
+      if TasksControll.TabIndex + 1 = 4 then
+      begin
+      Cells[1,1]:= 'Диаметр твэла, мм';
+      Cells[2,1]:= FloatToStr(dtv);
+      Cells[1,2]:= 'Зазор между твэлами, мм';
+      Cells[2,2]:=FloatToStr(dltv);
+      Cells[1,3]:= 'Зазор между кассетами, мм';
+      Cells[2,3]:=FloatToStr(dlmk);
+      Cells[1,4]:= 'Отношение высоты АЗ к диаметру';
+      Cells[2,4]:=FloatToStr(hkd);
+      Cells[1,5]:= 'Предельно допустимое выгорание, г/см3';
+      Cells[2,5]:=FloatToStr(dlq);
+      end;
+
+      if TasksControll.TabIndex + 1 = 5 then
+      begin
+      Cells[1,1]:= 'Диаметр твэла, мм';
+      Cells[2,1]:= FloatToStr(dtv);
+      Cells[1,2]:= 'Зазор между твэлами, мм';
+      Cells[2,2]:=FloatToStr(dltv);
+      Cells[1,3]:= 'Зазор между кассетами, мм';
+      Cells[2,3]:=FloatToStr(dlmk);
+      Cells[1,4]:= 'Число кассет';
+      Cells[2,4]:=FloatToStr(nks);
+      Cells[1,5]:= 'Предельно допустимое выгорание, г/см3';
+      Cells[2,5]:=FloatToStr(dlq);
+      end;
+
+      if TasksControll.TabIndex + 1 = 6 then
+      begin
+      Cells[1,1]:= 'Диаметр твэла, мм';
+      Cells[2,1]:= FloatToStr(dtv);
+      Cells[1,2]:= 'Зазор между кассетами, мм';
+      Cells[2,2]:=FloatToStr(dlmk);
+      Cells[1,3]:= 'Число кассет';
+      Cells[2,3]:=FloatToStr(nks);
+      Cells[1,4]:= 'Предельно допустимое выгорание, г/см3';
+      Cells[2,4]:=FloatToStr(dlq);
+      Cells[1,5]:= 'Заданное среднее значение скорости теплоносителя на входе  в АЗ, м/с';
+      Cells[2,5]:=FloatToStr(wvh);
+      end;
+
+      if TasksControll.TabIndex + 1 = 7 then
+      begin
+      Cells[1,1]:= 'Диаметр твэла, мм';
+      Cells[2,1]:= FloatToStr(dtv);
+      Cells[1,2]:= 'Зазор между твэлами, мм';
+      Cells[2,2]:=FloatToStr(dltv);
+      Cells[1,3]:= 'Зазор между кассетами, мм';
+      Cells[2,3]:=FloatToStr(dlmk);
+      Cells[1,4]:= 'Число кассет';
+      Cells[2,4]:=FloatToStr(nks);
+      Cells[1,5]:= 'Высота АЗ, мм';
+      Cells[2,5]:=FloatToStr(haz);
+      end;
+    
+    end; 
+
+    with Tab do
+    begin
+
+      if TasksControll.TabIndex + 1 = 1 then
+      begin
+        N_data:=5;
+        Ik:=29;
+        Cells[1,0]:='Диаметр твэла, мм';
+        Cells[2,0]:=Format('%7.2f',[dtv]);
+        Cells[1,1]:='Зазор между твэлами, мм';
+        Cells[2,1]:=Format('%7.2f',[dltv]);
+        Cells[1,2]:='Зазор между кассетами, мм';
+        Cells[2,2]:=Format('%7.2f',[dlmk]);
+        Cells[1,3]:='Число кассет';
+        Cells[2,3]:=Format('%7.1f',[nks]);
+        Cells[1,4]:='Высота АЗ, мм';
+        Cells[2,4]:=Format('%7.2f',[haz]);
+      end;
+
+      if TasksControll.TabIndex + 1 = 2 then
+      begin
+        N_data:=5;
+        Ik:=29;
+        Cells[1,0]:='Диаметр твэла, мм';
+        Cells[2,0]:=Format('%7.2f',[dtv]);
+        Cells[1,1]:='Зазор между твэлами, мм';
+        Cells[2,1]:=Format('%7.2f',[dltv]);
+        Cells[1,2]:='Число кассет';
+        Cells[2,2]:=Format('%7.1f',[nks]);
+        Cells[1,3]:='Высота АЗ, мм';
+        Cells[2,3]:=Format('%7.2f',[haz]);
+        Cells[1,4]:='Доля воды в ячейке АЗ';
+        Cells[2,4]:=Format('%7.3f',[rh20]);
+      end;
+
+      if TasksControll.TabIndex + 1 = 3 then
+      begin
+        N_data:=4;
+        Ik:=30;
+        Cells[1,0]:='Число кассет';
+        Cells[2,0]:=Format('%7.1f',[nks]);
+        Cells[1,1]:='Отношение высоты АЗ к диаметру';
+        Cells[2,1]:=Format('%7.3f',[hkd]);
+        Cells[1,2]:='Высота АЗ, мм';
+        Cells[2,2]:=Format('%7.2f',[haz]);
+        Cells[1,3]:='Доля воды в ячейке АЗ';
+        Cells[2,3]:=Format('%7.3f',[rh20]);
+      end;
+
+      if TasksControll.TabIndex + 1 = 4 then
+      begin
+        N_data:=4;
+        Ik:=30;
+        Cells[1,0]:='Число кассет';
+        Cells[2,0]:=Format('%7.1f',[nks]);
+        Cells[1,1]:='Высота АЗ, мм';
+        Cells[2,1]:=Format('%7.2f',[haz]);
+        Cells[1,2]:='Заданное среднее значение скорости теплоносителя на входе  в АЗ, м/с';
+        Cells[2,2]:=Format('%7.3f',[wvh]);
+        Cells[1,3]:='Доля воды в ячейке АЗ';
+        Cells[2,3]:=Format('%7.3f',[rh20]);
+      end;
+
+      if TasksControll.TabIndex + 1 = 5 then
+      begin
+        N_data:=4;
+        Ik:=30;
+        Cells[1,0]:='Отношение высоты АЗ к диаметру';
+        Cells[2,0]:=Format('%7.3f',[hkd]);
+        Cells[1,1]:='Высота АЗ, мм';
+        Cells[2,1]:=Format('%7.2f',[haz]);
+        Cells[1,2]:='Заданное среднее значение скорости теплоносителя на входе  в АЗ, м/с';
+        Cells[2,2]:=Format('%7.3f',[wvh]);
+        Cells[1,3]:='Доля воды в ячейке АЗ';
+        Cells[2,3]:=Format('%7.3f',[rh20]);
+      end;
+
+      if TasksControll.TabIndex + 1 = 6 then
+      begin
+        N_data:=4;
+        Ik:=30;
+        Cells[1,0]:='Зазор между твэлами, мм';
+        Cells[2,0]:=Format('%7.2f',[dltv]);
+        Cells[1,1]:='Отношение высоты АЗ к диаметру';
+        Cells[2,1]:=Format('%7.3f',[hkd]);
+        Cells[1,2]:='Высота АЗ, мм';
+        Cells[2,2]:=Format('%7.2f',[haz]);
+        Cells[1,3]:='Доля воды в ячейке АЗ';
+        Cells[2,3]:=Format('%7.3f',[rh20]);
+      end;
+
+      if TasksControll.TabIndex + 1 = 7 then
+      begin
+        N_data:=4;
+        Ik:=30;
+        Cells[1,0]:='Отношение высоты АЗ к диаметру';
+        Cells[2,0]:=Format('%7.3f',[hkd]);
+        Cells[1,1]:='Предельно допустимое выгорание, г/см3';
+        Cells[2,1]:=Format('%7.2f',[dlq]);
+        Cells[1,2]:='Заданное среднее значение скорости теплоносителя на входе  в АЗ, м/с';
+        Cells[2,2]:=Format('%7.3f',[wvh]);
+        Cells[1,3]:='Доля воды в ячейке АЗ';
+        Cells[2,3]:=Format('%7.3f',[rh20]);
+      end;
+
+      
+    end;
+
+
+    Ik:=0;
+    (* вывод *)
+    with Tab do 
+    begin (* вывод *)
+      Cells[1, N_data]:='Число твэл в кассете';
+      Cells[2, N_data]:=Format('%7.0f',[ztv]);
+      Cells[1, N_data+1]:='Диаметр кассеты, мм';
+      Cells[2, N_data+1]:=Format('%7.2f',[dks]);
+      Cells[1, N_data+2]:='Диаметр АЗ, мм';
+      Cells[2, N_data+2]:=Format('%7.2f',[daz]);
+      Cells[1, N_data+3]:='Доля конструкционных материалов кассеты в ячейке АЗ';
+      Cells[2, N_data+3]:=Format('%7.3f',[rk]);
+      Cells[1, N_data+4]:='Доля материалов оболочек твэлов в ячейке АЗ';
+      Cells[2, N_data+4]:=Format('%7.3f',[rob]);
+      Cells[1, N_data+5]:='Доля топлива в ячейке';
+      Cells[2, N_data+5]:=Format('%7.3f',[rtop]);
+      if Kmr='ВВРК' then
+      begin
+        Ik:=7;
+        Cells[1, N_data+6]:='Доля АЗ,занятая экономайзером';
+        Cells[2, N_data+6]:=Format('%7.3f',[le]);
+      end
+      else
+        Ik:=6;
+      Cells[1, N_data+Ik]:='Средний тепловой поток в АЗ, Вт/м2';
+      Cells[2, N_data+Ik]:=Format('%7.1f',[qsr]);
+      Cells[1, N_data+Ik+1]:='Критический  тепловой поток в АЗ, Вт/м2';
+      Cells[2, N_data+Ik+1]:=Format('%7.1f',[qkr]);
+      Cells[1, N_data+Ik+2]:='Запас по кризису';
+      Cells[2, N_data+Ik+2]:=Format('%7.3f',[kqp]);
+      Cells[1, N_data+Ik+3]:='Максимальная температура топлива, град.С';
+      Cells[2, N_data+Ik+3]:=Format('%7.2f',[ttmax]);
+      Cells[1, N_data+Ik+4]:='Температура теплоносителя на выходе из МКП, град.С';
+      Cells[2, N_data+Ik+4]:=Format('%7.2f',[tvimk]);
+      Cells[1, N_data+Ik+5]:='Температура теплоносителя на выходе из кассет на выходе из МКП, град.С';
+      Cells[2, N_data+Ik+5]:=Format('%7.2f',[tviks]);
+      Cells[1, N_data+Ik+6]:='Средний удельный объем замедлителя в АЗ,  м3/кг';
+      Cells[2, N_data+Ik+6]:=Format('%7.5f',[vazsr]);
+      Cells[1, N_data+Ik+7]:='Поверхность теплообмена АЗ, м2';
+      Cells[2, N_data+Ik+7]:=Format('%7.2f',[saz]);
+      Cells[1, N_data+Ik+8]:='Расход теплоносителя через АЗ, кг/с';
+      Cells[2, N_data+Ik+8]:=Format('%7.3f',[gaz]);
+      Cells[1, N_data+Ik+9]:='Давление теплоносителя, МПа';
+      Cells[2, N_data+Ik+9]:=Format('%7.2f',[p]);
+      if Kmr='ВВРК' then
+      begin
+        Ik:=18;
+        Cells[1, N_data+17]:='Массовое паросодержание на выходе из A3';
+        Cells[2, N_data+17]:=Format('%7.4f',[xk]);
+        Cells[1, N_data+18]:='Среднее истинное oбъемное паросодержание';
+        Cells[2, N_data+18]:=Format('%7.4f',[fi]);
+      end
+      else
+        Ik:=15;
+      Cells[1, N_data+Ik+1]:='Действительное выгорание,г/см3';
+      Cells[2, N_data+Ik+1]:=Format('%7.4f',[ddlq]);
+      Cells[1, N_data+Ik+2]:='Действительное значение скорости теплоносителя на входе в АЗ, м/с';
+      Cells[2, N_data+Ik+2]:=Format('%7.3f',[wvhd]);
+    end; (* вывод *)
+
+    for iter1 := 1 to TabData.RowCount do
+    begin
+      TabData.Cells[0,iter1] := Inttostr(iter1);
+    end;
+    
+    for iter1 := 0 to Tab.RowCount do
+    begin
+      Tab.Cells[0,iter1] := Inttostr(iter1 + TabData.RowCount);
+    end;
+
+
+    
+
+  end;
+ //****************************ЗАПОЛНЕНИЕ ТАБЛИЦЫ*********************************************
+
+ termoisset := true;
+
+end;
+
+
+
+
+procedure TMars.Button4Click(Sender: TObject);
+  procedure Conditions;
+  begin
+    if((kef < 1.011) and ((rg >= rdop) or (xnk >= 0.93))) then
+    begin (* 7 *)
+      MessageDlg('ОБРАТИТЕ ВНИМАНИЕ !!!'  +#10#13 + #10#13 +
+                 'xnk= '+ Format('%5.2f', [xnk]) + #10#13 +
+                 'rg=' + Format('%5.2f',[rg]) + #10#13 +
+                 'kef=' + Format('%7.4f',[kef]) + #10#13 +
+                 'pb=' + Format('%7.4e',[pb]) + #10#13 + #10#13 +
+                 'ИДИТЕ К НОВОМУ ВАРИАНТУ РАСЧЕТА',
+                 mtError,[mbOk],
+                 0);
+      Abort;
+      //FormFrData.PageControl1.ActivePage:=FormFrData.TabSheet4;
+      //FormFrData.Close;
+    end;  (* 7 *)
+  end;
+var
+Ip,Ik: byte;
+begin
+
+    ksh20:=1.35;   // замедляющая способность воды при 20град.СЮ 1/см
+    sa5:=681.0;    // микросечение захвата нейтронов U-235, барн
+    sf5:=583.0;    // микросечение реакции деления U-235, барн
+    ss5:=5.12;     // микросечение рассеяния нейтронов U-235, барн
+    sa8:=2.71;     // микросечение захвата нейтронов U-238, барн
+    ss8:=20.0;     // микросечение рассеяния нейтронов U-238, барн
+    sah20:=0.664;  // микросечение захвата нейтронов молекулой воды, барн
+    ssh20:=44.0;   // микросечение рассеяния нейтронов молекулой воды, барн
+    a:=0.6023;     // число Авагадро
+
+    // Число атомов урана в молекуле горючего
+    String_data:=FR_ChisloAtomovUrVMollekuleGor.Text;
+    if String_data<>'' then
+    begin
+      try
+        if Pos('.',String_data)= 0 then
+          nu:=StrToFloat(String_data)
+        else
+          nu:=StrToFloat(ChangeString(String_data));
+      except
+        Input_err(FR_ChisloAtomovUrVMollekuleGorCaption.Text);
+        ErrPri:=True;
+        Abort;
+      end;
+
+    end
+    else
+    begin
+      ShowMessage('Введите '+FR_ChisloAtomovUrVMollekuleGorCaption.Text);
+      exit;
+    end;
+
+    // Число атомов i-ого элемента в молекуле горючего
+    String_data:=FR_ChisloAtomIogoElemVMollekuleGor.Text;
+    if String_data<>'' then
+    begin
+      try
+        if Pos('.',String_data)= 0 then
+          ni:=StrToFloat(String_data)
+        else
+          ni:=StrToFloat(ChangeString(String_data));
+      except
+        Input_err(FR_ChisloAtomIogoElemVMollekuleGorCaption.Text);
+        ErrPri:=True;
+        Abort;
+      end;
+    end
+    else
+    begin
+      ShowMessage('Введите '+FR_ChisloAtomIogoElemVMollekuleGorCaption.Text);
+      exit;
+    end;
+
+    // Молекулярный вес горючего, а.е.м.
+    String_data:=FR_MolekulVesGor.Text;
+    if String_data<>'' then
+    begin
+      try
+        if Pos('.',String_data)= 0 then
+          m:=StrToFloat(String_data)
+        else
+          m:=StrToFloat(ChangeString(String_data));
+      except
+        Input_err(FR_MolekulVesGorCaption.Text);
+        ErrPri:=True;
+        Abort;
+      end;
+    end
+    else
+    begin
+      ShowMessage('Введите '+FR_MolekulVesGorCaption.Text);
+      exit;
+    end;
+
+    // Плотность горючего, г/см3
+    String_data:=FR_PlotnGor.Text;
+    if String_data<>'' then
+    begin
+      try
+        if Pos('.',String_data)= 0 then
+          rog:=StrToFloat(String_data)
+        else
+          rog:=StrToFloat(ChangeString(String_data));
+      except
+        Input_err(FR_PlotnGorCaption.Text);
+        ErrPri:=True;
+        Abort;
+      end;
+    end
+    else
+    begin
+      ShowMessage('Введите '+FR_PlotnGorCaption.Text);
+      exit;
+    end;
+
+    // Микросечение захвата нейтронов ядрами i-ro элемента топлива, барн
+    String_data:=FR_MicroSechZahvNeitrYadrIogoElementaTopliva.Text;
+    if String_data<>'' then
+    begin
+      try
+        if Pos('.',String_data)= 0 then
+          sai:=StrToFloat(String_data)
+        else
+          sai:=StrToFloat(ChangeString(String_data));
+      except
+        Input_err(FR_MicroSechZahvNeitrYadrIogoElementaToplivaCaption.Text);
+        ErrPri:=True;
+        Abort;
+      end;
+    end
+    else
+    begin
+      ShowMessage('Введите '+FR_MicroSechZahvNeitrYadrIogoElementaToplivaCaption.Text);
+      exit;
+    end;
+
+    // Микросечение рассеяния нейтронов ядрами i-ro элемента топлива, барн
+    String_data:=FR_MicroSechRassNeitrYadrIogoElemTopl.Text;
+    if String_data<>'' then
+    begin
+      try
+        if Pos('.',String_data)= 0 then
+          ssi:=StrToFloat(String_data)
+        else
+          ssi:=StrToFloat(ChangeString(String_data));
+      except
+        Input_err(FR_MicroSechRassNeitrYadrIogoElemToplCaption.Text);
+        ErrPri:=True;
+        Abort;
+      end;
+    end
+    else
+    begin
+      ShowMessage('Введите '+FR_MicroSechRassNeitrYadrIogoElemToplCaption.Text);
+      exit;
+    end;
+
+    // Макросечение захвата нейтронов материалом оболочки твэл, 1/см
+    String_data:=FR_MacroSechZahvNeitrMaterObolTvela.Text;
+    if String_data<>'' then
+    begin
+      try
+        if Pos('.',String_data)= 0 then
+          siaob1:=StrToFloat(String_data)
+        else
+          siaob1:=StrToFloat(ChangeString(String_data));
+      except
+        Input_err(FR_MacroSechZahvNeitrMaterObolTvelaCaption.Text);
+        ErrPri:=True;
+        Abort;
+      end;
+    end
+    else
+    begin
+      ShowMessage('Введите '+FR_MacroSechZahvNeitrMaterObolTvelaCaption.Text);
+      exit;
+    end;
+
+    // Макросечение рассеяния нейтронов материалом оболочки твэл, 1/см
+    String_data:=FR_MacroSechRassNeitrMaterOblTvela.Text;
+    if String_data<>'' then
+    begin
+      try
+        if Pos('.',String_data)= 0 then
+          sisob1:=StrToFloat(String_data)
+        else
+          sisob1:=StrToFloat(ChangeString(String_data));
+      except
+        Input_err(FR_MacroSechRassNeitrMaterOblTvelaCaption.Text);
+        ErrPri:=True;
+        Abort;
+      end;
+    end
+    else
+    begin
+      ShowMessage('Введите '+FR_MacroSechRassNeitrMaterOblTvelaCaption.Text);
+      exit;
+    end;
+
+    // Макросечение захвата нейтронов конструкционным материалом кассеты, 1/см
+    String_data:=FR_MacroSechZahvNeitrKonstrMaterCasset.Text;
+    if String_data<>'' then
+    begin
+      try
+        if Pos('.',String_data)= 0 then
+          siak1:=StrToFloat(String_data)
+        else
+          siak1:=StrToFloat(ChangeString(String_data));
+      except
+        Input_err(FR_MacroSechZahvNeitrKonstrMaterCassetCaption.Text);
+        ErrPri:=True;
+        Abort;
+      end;
+    end
+    else
+    begin
+      ShowMessage('Введите '+FR_MacroSechZahvNeitrKonstrMaterCassetCaption.Text);
+      exit;
+    end;
+
+    // Макросечение рассеяния нейтронов конструкционным материалом кассеты, 1/см
+    String_data:=FR_MacroSechRassNeitrKonstrMaterCasset.Text;
+    if String_data<>'' then
+    begin
+      try
+        if Pos('.',String_data)= 0 then
+          sisk1:=StrToFloat(String_data)
+        else
+          sisk1:=StrToFloat(ChangeString(String_data));
+      except
+        Input_err(FR_MacroSechRassNeitrKonstrMaterCassetCaption.Text);
+        ErrPri:=True;
+        Abort;
+      end;
+    end
+    else
+    begin
+      ShowMessage('Введите '+FR_MacroSechRassNeitrKonstrMaterCassetCaption.Text);
+      exit;
+    end;
+
+    // Макросечение захвата нейтронов материалом матрицы, 1/см
+    String_data:=FR_MacroSechZahvNeitrMaterMatr.Text;
+    if String_data<>'' then
+    begin
+      try
+        if Pos('.',String_data)= 0 then
+          siam1:=StrToFloat(String_data)
+        else
+          siam1:=StrToFloat(ChangeString(String_data));
+      except
+        Input_err(FR_MacroSechZahvNeitrMaterMatrCaption.Text);
+        ErrPri:=True;
+        Abort;
+      end;
+    end
+    else
+    begin
+      ShowMessage('Введите '+FR_MacroSechZahvNeitrMaterMatrCaption.Text);
+      exit;
+    end;
+
+    // Макросечение рассеяния нейтронов материалом матрицы, 1/см
+    String_data:=FR_MacroSechRassNeitrMaterMatr.Text;
+    if String_data<>'' then
+    begin
+      try
+        if Pos('.',String_data)= 0 then
+          sism1:=StrToFloat(String_data)
+        else
+          sism1:=StrToFloat(ChangeString(String_data));
+      except
+        Input_err(FR_MacroSechRassNeitrMaterMatrCaption.Text);
+        ErrPri:=True;
+        Abort;
+      end;
+    end
+    else
+    begin
+      ShowMessage('Введите '+FR_MacroSechRassNeitrMaterMatrCaption.Text);
+      exit;
+    end;
+
+    // Допустимая доля горючего в топливной композиции
+    String_data:=FR_DopDolGorvToplCompos.Text;
+    if String_data<>'' then
+    begin
+      try
+        if Pos('.',String_data)= 0 then
+          rdop:=StrToFloat(String_data)
+        else
+          rdop:=StrToFloat(ChangeString(String_data));
+      except
+        Input_err(FR_DopDolGorvToplComposCaption.Text);
+        ErrPri:=True;
+        Abort;
+      end;
+    end
+    else
+    begin
+      ShowMessage('Введите '+FR_DopDolGorvToplComposCaption.Text);
+      exit;
+    end;
+
+    // ВЫБОР ВАРИАНТА
+    String_data:=FR_DolGorOrObogash.Text;
+    if String_data<>'' then
+    begin
+      try
+        if Pos('.',String_data)= 0 then
+          case FR_DolGorOrObogashCombobox.ItemIndex of
+            0: xnk:=StrToFloat(String_data);
+            1: rg:=StrToFloat(String_data);
+          end
+          else
+            case FR_DolGorOrObogashCombobox.ItemIndex of
+              0: xnk:=StrToFloat(ChangeString(String_data));
+              1: rg:=StrToFloat(ChangeString(String_data));
+            end;
+      except
+
+        if FR_DolGorOrObogashCombobox.ItemIndex = 0 then
+        begin
+            ErrText:=FR_DolGorOrObogashCombobox.Items[0];
+        end;
+
+        if FR_DolGorOrObogashCombobox.ItemIndex = 1 then
+        begin
+            ErrText:=FR_DolGorOrObogashCombobox.Items[1];
+        end;
+
+      Input_err(ErrText); ErrPri:=True; Abort  end;
+    end
+    else
+    begin
+      ShowMessage('Введите Долю горючего или обогащение');
+      exit;
+    end;
+
+       with FrTab do
+    begin (* Построение таблицы результатов  *)
+       //    построение заголовка
+      Cells[0,0]:='   № ';
+      Cells[1,0]:='                 ПАРАМЕТР/СОСТОЯНИЕ РЕАКТОРА';
+      Cells[2,0]:=' ГОРЯЧИЙ';
+      Cells[3,0]:=' ГОРЯЧИЙ';
+      Cells[4,0]:=' ХОЛОДНЫЙ';
+      // Заполнение столбца номеров строк
+      for Ip:=1 to (Tab.RowCount-1) do
+        Cells[0,Ip]:=Format('%5d',[Ip]);
+      Cells[1,1]:='Эффективный коэффициент размножения нейтронов';
+      Cells[1,2]:='Коэффициент использования тепловых нейтронов';
+      Cells[1,3]:='Коэффициент размножения на быстрых нейтронах';
+      Cells[1,4]:='Вероятность избежать резонансного захвата';
+      Cells[1,5]:='Вероятность избежать утечки для тепловых нейтронов';
+      Cells[1,6]:='Вероятность избежать утечки для быстрых нейтронов';
+      Cells[1,7]:='Обогащение';
+      Cells[1,8]:='Масса урана - 235, кг';
+      Cells[1,9]:='Масса горючего, кг';
+      Cells[1,10]:='Масса плутония, кг';
+      Cells[1,11]:='Доля горючего в топливной композиции';
+      Cells[1,12]:='Нейтронный поток *Е-13, н/(см2*с)';
+      Cells[1,13]:='Температура нейтронного газа, град.К';
+      Cells[1,14]:='Возраст нейтронов в АЗ, см2';
+      Cells[1,15]:='Концентрация ядер урана-235 *Е-03, см3';
+      Cells[1,16]:='Концентрация ядер урана-238 *Е-03, см3';
+    end; (* Построение таблицы результатов  *)
+
+    Nvf:=0;    // номер варианта расчета
+
+    Nvf:=Nvf+1;   // Номер варианта
+
+  ipo:=FR_DolGorOrObogashCombobox.ItemIndex+1;  // признака ввода обогащения или доли горючего
+  vaz:=Pi/4*haz*daz*daz*1.0E-03;   // объем A3
+  roh20:=1.0E-3/vazsr;
+  dlg5:=nr*t/18.6;
+  // Для нахождения максимального количества U-235 на начало кампании
+  {If ipo = 1 Then rg:=rdop; }
+  // xnk задается 0,99 а при проверке должен быть меньше 0,93
+  If ipo = 1 Then rg:=rdop;
+  if ipo = 2 then
+    xnk:=0.99;
+  //ggnk:=vaz*rtop*rg*rog;    // масса горючего на начало кампании
+  g5nk:=dlg5+10; {ggnk*xnk*235/m;}
+  ggnk:=m*g5nk/(235*xnk);
+  g5:=g5nk-dlg5;            // масса U-235  на конец кампании
+  rg:= ggnk/(rog*vaz*rtop);
+
+  while  (Abs(kef-1.011)> 0.0001) do
+  begin (* расчет *)
+    MarsF(ipo,1);                   // Нейтронно-физический расчет горячего реактора на конец кампании
+    Conditions;
+    g8:=gg*(1-xkk)*238/m;
+    kvospr:=sa8/sa5*g8/(g5nk-g5)*Ln(g5nk/g5)+2.07*Eps*(1-prez)*pb;
+    gpu:=kvospr*dlg5; // на конец камп ips=l
+  end; (* расчет *)
+  with  FrTab do
+  begin  (* вывод *)
+ // КОНЕЦ  КАМПАНИИ - ГОРЯЧИЙ
+    Cells[2,1]:=Format('%7.4f',[kef]);           // Эффективный коэффициент размножения нейтронов
+    Cells[2,2]:=Format('%7.4f',[teta]);          // Коэффициент использования тепловых нейтронов
+    Cells[2,3]:=Format('%7.4f',[eps]);           // Коэффициент размножения на быстрых нейтронах
+    Cells[2,4]:=Format('%7.4f',[prez]);          // Вероятность избежать резонансного захвата
+    Cells[2,5]:=Format('%7.4f',[pt]);            // Вероятность избежать утечки для тепловых нейтронов
+    Cells[2,6]:=Format('%7.4f',[pb]);            // Вероятность избежать утечки для быстрых нейтронов
+    Cells[2,7]:=Format('%7.3f',[xkk]);           // Обогащение
+    Cells[2,8]:=Format('%7.3f',[g5*1e-03]);      // Масса урана - 235, кг
+    Cells[2,9]:=Format('%7.3f',[gg*1e-03]);      // Масса горючего на конец кампании, кг
+    Cells[2,10]:=Format('%7.3f',[gpu*1e-03]);    // Масса плутония, кг
+    Cells[2,11]:=Format('%7.3f',[rg]);           // Доля горючего в топливной композиции
+    Cells[2,12]:=Format('%7.3f',[fin*1e-13]);    // Нейтронный поток
+    Cells[2,13]:=Format('%7.1f',[tng]);          // Температура нейтронного газа, град.К
+    Cells[2,14]:=Format('%7.1f',[tau]);          // Возраст нейтронов в АЗ, см2
+    Cells[2,15]:=Format('%7.4f',[n5*1e03]);      // Концентрация ядер U-235 в ячейке A3
+    Cells[2,16]:=Format('%7.4f',[n8*1e03]);      // Концентрация ядер U-238 в ячейке A3
+  end; (* вывод *)
+  // Нейтронно-физический расчет горячего реактора на начало кампании
+  ggnk:=vaz*rtop*rg*rog;    // масса горючего на начало кампании
+  g5nk:=ggnk*xnk*235/m;
+  g5:=g5nk;  dlg5:=0;   gpu:=0;
+
+  MarsF(ipo,2);
+  Conditions;
+  with  FrTab do
+  begin  (* вывод *)
+    // НАЧАЛО КАМПАНИИ - ГОРЯЧИЙ
+    Cells[3,1]:=Format('%7.4f',[kef]);           // Эффективный коэффициент размножения нейтронов
+    Cells[3,2]:=Format('%7.4f',[teta]);          // Коэффициент теплового использования  на тепловых нейтронах
+    Cells[3,3]:=Format('%7.4f',[eps]);           // Коэффициент размножения на быстрых нейтронах
+    Cells[3,4]:=Format('%7.4f',[prez]);          // Вероятность избежать резонансного захвата
+    Cells[3,5]:=Format('%7.4f',[pt]);            // Вероятность избежать утечки для тепловых нейтронов
+    Cells[3,6]:=Format('%7.4f',[pb]);            // Вероятность избежать утечки для быстрых нейтронов
+    Cells[3,7]:=Format('%7.3f',[xnk]);           // Обогащение
+    Cells[3,8]:=Format('%7.3f',[g5nk*1e-03]);    // Масса урана - 235 на начало кампании, кг
+    Cells[3,9]:=Format('%7.3f',[ggnk*1e-03]);    // Масса горючего на начало кампании, кг
+    Cells[3,10]:=Format('%7.3f',[gpu*1e-3]);     // Масса плутония, кг
+    Cells[3,11]:=Format('%7.3f',[rg]);           // Доля горючего в топливной композиции
+    Cells[3,12]:=Format('%7.3f',[fin*1e-13]);    // Нейтронный поток
+    Cells[3,13]:=Format('%7.1f',[tng]);          // Температура нейтронного газа, град.К
+    Cells[3,14]:=Format('%7.1f',[tau]);          // Возраст нейтронов в АЗ, см2
+    Cells[3,15]:=Format('%7.4f',[n5*1e03]);      // Концентрация ядер U-235 в ячейке A3
+    Cells[3,16]:=Format('%7.4f',[n8*1e03]);      // Концентрация ядер U-238 в ячейке A3
+  end; (* вывод *)
+  ggnk:=vaz*rtop*rg*rog;    // масса горючего на начало кампании
+  g5nk:=ggnk*xnk*235/m;
+  g5:=g5nk;  dlg5:=0;   gpu:=0;
+  roh20:=1;      // плотность воды
+  gpu:=0; // на начало кампании
+  MarsF(ipo,3);        // Нейтронно-физический расчет холодного реактора на начало кампинии
+  Conditions;
+
+  With  FrTab do
+  begin  (* вывод *)
+    // НАЧАЛО КАМПАНИИ - холодный
+    Cells[4,1]:=Format('%7.4f',[kef]);           // Эффективный коэффициент размножения нейтронов
+    Cells[4,2]:=Format('%7.4f',[teta]);          // Коэффициент теплового использования на тепловых нейтронах
+    Cells[4,3]:=Format('%7.4f',[eps]);           // Коэффициент размножения на быстрых нейтронах
+    Cells[4,4]:=Format('%7.4f',[prez]);          // Вероятность избежать резонансного захвата
+    Cells[4,5]:=Format('%7.4f',[pt]);            // Вероятность избежать утечки для тепловых нейтронов
+    Cells[4,6]:=Format('%7.4f',[pb]);            // Вероятность избежать утечки для быстрых нейтронов
+    Cells[4,7]:=Format('%7.3f',[xnk]);           // Обогащение
+    Cells[4,8]:=Format('%7.3f',[g5nk*1e-03]);    // Масса урана - 235 на начало кампании, кг
+    Cells[4,9]:=Format('%7.3f',[ggnk*1e-03]);    // Масса горючего на начало кампании, кг
+    Cells[4,10]:=Format('%7.3f',[gpu*1e-03]);    // Масса плутония, кг
+    Cells[4,11]:=Format('%7.3f',[rg]);           // Доля горючего в топливной композиции
+    Cells[4,12]:=Format('%7.3f',[fin*1e-13]);    // Нейтронный поток
+    Cells[4,13]:=Format('%7.1f',[tng]);          // Температура нейтронного газа, град.К
+    Cells[4,14]:=Format('%7.1f',[tau]);          // Возраст нейтронов в АЗ, см2
+    Cells[4,15]:=Format('%7.4f',[n5*1e03]);      // Концентрация ядер U-235 в ячейке A3
+    Cells[4,16]:=Format('%7.4f',[n8*1e03]);      // Концентрация ядер U-238 в ячейке A3
+  end; (* вывод *)
+
+  phisTisset := true;
+  FrController.TabIndex := 1;
+  FrTab.ColWidths[0] := Round(FrTab.Width * 0.05);
+  FrTab.ColWidths[1] := Round(FrTab.Width * 0.65);
+  FrTab.ColWidths[2] := Round(FrTab.Width * 0.10);
+  FrTab.ColWidths[3] := Round(FrTab.Width * 0.10);
+  FrTab.ColWidths[4] := Round(FrTab.Width * 0.10);
+
+
+
+end;
+
+procedure TMars.ComboBox1Change(Sender: TObject);
+begin
+
+
+    case Combobox1.ItemIndex of
+
+    0: begin
+           Edit14.Text := FloatTostr(12);
+           Edit17.Text := FloatTostr(9.6);
+           Edit20.Text := FloatTostr(1);
+           Edit23.Text := FloatTostr(2);
+           Edit26.Text := FloatTostr(267);
+           Edit29.Text := FloatTostr(0.0002);
+           Edit32.Text := FloatTostr(3.75);
+       end;
+
+     1: begin
+           Edit14.Text := FloatTostr(14);
+           Edit17.Text := FloatTostr(9.6);
+           Edit20.Text := FloatTostr(1);
+           Edit23.Text := FloatTostr(2);
+           Edit26.Text := FloatTostr(267);
+           Edit29.Text := FloatTostr(0.0002);
+           Edit32.Text := FloatTostr(3.75);
+       end;
+
+     2: begin
+           Edit14.Text := FloatTostr(120);
+           Edit17.Text := FloatTostr(9.6);
+           Edit20.Text := FloatTostr(1);
+           Edit23.Text := FloatTostr(2);
+           Edit26.Text := FloatTostr(267);
+           Edit29.Text := FloatTostr(0.0002);
+           Edit32.Text := FloatTostr(3.75);
+       end;
+
+     3: begin
+           Edit14.Text := FloatTostr(80);
+           Edit17.Text := FloatTostr(6.5);
+           Edit20.Text := FloatTostr(1);
+           Edit23.Text := FloatTostr(3);
+           Edit26.Text := FloatTostr(316);
+           Edit29.Text := FloatTostr(0.24);
+           Edit32.Text := FloatTostr(1.4);
+       end;
+
+     4: begin
+           Edit14.Text := FloatTostr(17);
+           Edit17.Text := FloatTostr(6.5);
+           Edit20.Text := FloatTostr(1);
+           Edit23.Text := FloatTostr(3);
+           Edit26.Text := FloatTostr(316);
+           Edit29.Text := FloatTostr(0.24);
+           Edit32.Text := FloatTostr(1.4);
+       end;
+
+     5: begin
+           Edit14.Text := FloatTostr(15);
+           Edit17.Text := FloatTostr(12);
+           Edit20.Text := FloatTostr(1);
+           Edit23.Text := FloatTostr(1);
+           Edit26.Text := FloatTostr(326);
+           Edit29.Text := FloatTostr(0.185);
+           Edit32.Text := FloatTostr(6.2);
+       end;
+
+    end;
+
+end;
+
+procedure TMars.DarkThemeModeCheckBoxClick(Sender: TObject);
+begin
+    if DarkThemeModeCheckBox.Checked then
+    begin
+       TStyleManager.SetStyle('Glossy');
+    end
+    else
+    begin
+       TStyleManager.SetStyle('Iceberg Classico');
+    end;
+end;
+
+procedure TMars.FormCreate(Sender: TObject);
+
+begin
+  //WindowState := wsMaximized;
+  Mars.ClientWidth:= 1600;
+  Mars.ClientHeight := 900;
+  //TStyleManager.SetStyle('Iceberg Classico');
+  //TStyleManager.SetStyle('Charcoal Dark Slate');
+  //TStyleManager.SetStyle('Glossy');
+  TStyleManager.SetStyle('Iceberg Classico');
+  materialsIsset := False;
+  termoIsset := False;
+  MarsTIsset := False;
+  phisTisset := False;
+  physicsIsset := False;
+  notTypicalFuelMaterial := False;
+  notTypicalMatrixMaterial := False;
+  notTypicalCassetteMaterial := False;
+  notTypicalShellMaterial := False;
+  reactorGroup.ItemIndex := 0;
+  MainController.ActivePageIndex := 0;
+  Task1Panel.Visible := true;
+  Task2Panel.Visible := false;
+  Task3Panel.Visible := false;
+  Task4Panel.Visible := false;
+  Task5Panel.Visible := false;
+  Task6Panel.Visible := false;
+  Task7Panel.Visible := false;
+  Tab.FixedColor := clNone;
+  TabData.FixedColor := clNone;
+  Tab.Enabled := false;
+  TabData.Enabled := false;
+
+
+      case Combobox1.ItemIndex of
+
+    0: begin
+           Edit14.Text := FloatTostr(12);
+           Edit17.Text := FloatTostr(9.6);
+           Edit20.Text := FloatTostr(1);
+           Edit23.Text := FloatTostr(2);
+           Edit26.Text := FloatTostr(267);
+           Edit29.Text := FloatTostr(0.0002);
+           Edit32.Text := FloatTostr(3.75);
+       end;
+
+     1: begin
+           Edit14.Text := FloatTostr(14);
+           Edit17.Text := FloatTostr(9.6);
+           Edit20.Text := FloatTostr(1);
+           Edit23.Text := FloatTostr(2);
+           Edit26.Text := FloatTostr(267);
+           Edit29.Text := FloatTostr(0.0002);
+           Edit32.Text := FloatTostr(3.75);
+       end;
+
+     2: begin
+           Edit14.Text := FloatTostr(120);
+           Edit17.Text := FloatTostr(9.6);
+           Edit20.Text := FloatTostr(1);
+           Edit23.Text := FloatTostr(2);
+           Edit26.Text := FloatTostr(267);
+           Edit29.Text := FloatTostr(0.0002);
+           Edit32.Text := FloatTostr(3.75);
+       end;
+
+     3: begin
+           Edit14.Text := FloatTostr(80);
+           Edit17.Text := FloatTostr(6.5);
+           Edit20.Text := FloatTostr(1);
+           Edit23.Text := FloatTostr(3);
+           Edit26.Text := FloatTostr(316);
+           Edit29.Text := FloatTostr(0.24);
+           Edit32.Text := FloatTostr(1.4);
+       end;
+
+     4: begin
+           Edit14.Text := FloatTostr(17);
+           Edit17.Text := FloatTostr(6.5);
+           Edit20.Text := FloatTostr(1);
+           Edit23.Text := FloatTostr(3);
+           Edit26.Text := FloatTostr(316);
+           Edit29.Text := FloatTostr(0.24);
+           Edit32.Text := FloatTostr(1.4);
+       end;
+
+     5: begin
+           Edit14.Text := FloatTostr(15);
+           Edit17.Text := FloatTostr(12);
+           Edit20.Text := FloatTostr(1);
+           Edit23.Text := FloatTostr(1);
+           Edit26.Text := FloatTostr(326);
+           Edit29.Text := FloatTostr(0.185);
+           Edit32.Text := FloatTostr(6.2);
+       end;
+
+    end;
+
+
+
+
+
+
+
+
+end;
+
+
+
+procedure TMars.FormResize(Sender: TObject);
+var iter : integer;
+begin
+
+
+    TabData.ColWidths[0]:= Round(TabData.Width * 0.1);
+    TabData.ColWidths[1]:= Round(TabData.Width * 0.8);
+    TabData.ColWidths[2]:= Round(TabData.Width * 0.1);
+
+    for iter := 0 to TabData.RowCount - 1  do
+    begin
+      TabData.RowHeights[iter] := Round(TabData.Height / TabData.RowCount);
+    end;
+
+    Tab.ColWidths[0]:= Round(Tab.Width * 0.1);
+    Tab.ColWidths[1]:= Round(Tab.Width * 0.8);
+    Tab.ColWidths[2]:= Round(Tab.Width * 0.1);
+
+    for iter := 0 to Tab.RowCount - 1  do
+    begin
+      Tab.RowHeights[iter] := Round(Tab.Height / Tab.RowCount);
+    end;
+
+    FrTab.ColWidths[0] := Round(FrTab.Width * 0.05);
+    FrTab.ColWidths[1] := Round(FrTab.Width * 0.65);
+    FrTab.ColWidths[2] := Round(FrTab.Width * 0.10);
+    FrTab.ColWidths[3] := Round(FrTab.Width * 0.10);
+    FrTab.ColWidths[4] := Round(FrTab.Width * 0.10);
+
+
+
+end;
+
+procedure TMars.FrControllerChange(Sender: TObject);
+begin
+    if phisTisset then
+    begin
+      FrTab.ColWidths[0] := Round(FrTab.Width * 0.05);
+      FrTab.ColWidths[1] := Round(FrTab.Width * 0.65);
+      FrTab.ColWidths[2] := Round(FrTab.Width * 0.10);
+      FrTab.ColWidths[3] := Round(FrTab.Width * 0.10);
+      FrTab.ColWidths[4] := Round(FrTab.Width * 0.10);
+    end
+    else
+    begin
+      FrController.TabIndex := 0;
+      ShowMessage('Введите все данные, а затем нажмите на кнопку принять')
+    end;
+
+end;
+
+procedure TMars.FR_DolGorOrObogashComboboxSelect(Sender: TObject);
+begin
+      if FR_DolGorOrObogashCombobox.ItemIndex = 0 then
+    FR_DolGorOrObogash.Text:='0,2'
+  else
+    FR_DolGorOrObogash.Text:='0,3';
+end;
+
+procedure TMars.FR_excelOutClick(Sender: TObject);
+var
+Wsheet : OleVariant;
+it : integer;
+begin
+     ExcelApp := CreateOleObject('Excel.Application');
+     ExcelApp.Visible := True;
+     ExcelApp.Workbooks.Add;
+     Wsheet := ExcelApp.WorkSheets[1];
+     Wsheet.Activate;
+
+     Wsheet.Range['a1'].ColumnWidth := 10;
+     Wsheet.Range['b1'].ColumnWidth := 65;
+     Wsheet.Range['c1'].ColumnWidth := 26;
+
+     Wsheet.Range['d1'].ColumnWidth := 26;
+     Wsheet.Range['e1'].ColumnWidth := 26;
+
+     Wsheet.Range['a1','e17'].Borders.LineStyle:=1;
+     //Wsheet.Range['f1','f5'].Font.FontStyle:= 'Bold';
+     Wsheet.Range['a1','e1'].Font.FontStyle:= 'Bold';
+     Wsheet.Range['a1'].Value := '№';
+     Wsheet.Range['b1'].Value := 'Параметр/Состояние реакора';
+     Wsheet.Range['c1'].Value := 'Конец Компании. Горячий';
+     Wsheet.Range['d1'].Value := 'Начало Компании. Горячий';
+     Wsheet.Range['e1'].Value := 'Начало Компании. Холодный';
+
+     for it := 1 to 16 do
+     begin
+       Wsheet.Range[Format('a%d',[it + 1])]:=it;
+     end;
+
+
+
+
+
+end;
+
+procedure TMars.MainControllerChange(Sender: TObject);
+begin
+    if MainController.ActivePageIndex = 1 then
+    begin
+      if not materialsIsset then
+      begin
+
+          showmessage('Задайте материалы реактора');
+          MainController.ActivePageIndex := 0;
+      end;
+
+    end;
+
+    if MainController.ActivePageIndex = 2 then
+    begin
+      if not termoIsset then
+      begin
+      
+        if not materialsIsset then
+        begin
+
+            showmessage('Задайте материалы реактора');
+            MainController.ActivePageIndex := 0;
+        end
+        else
+        begin
+            showmessage('Выполните тепловой расчет');
+            MainController.ActivePageIndex := 1;
+        end;
+
+      end
+      else
+      begin
+
+        FR_ReactorType.Text := reactorType;
+        FR_MaterialObl.Text := shellMaterial;
+        FR_CassetType.Text := сassetteType;
+        FR_Fuel.Text := FuelMaterial;
+        FR_CassetMaterial.Text := сassetteMaterial;
+        FR_MatrixMaterial.Text := matrixMaterial;
+
+        FR_Result_ReactorType.Text := reactorType;
+        FR_Result_MaterialObl.Text := shellMaterial;
+        FR_Result_CassetType.Text := сassetteType;
+        FR_Result_FuelType.Text := FuelMaterial;
+        FR_Result_CassetMaterial.Text := сassetteMaterial;
+        FR_Result_MatrixMaterial.Text := matrixMaterial;
+
+
+        if fuelMaterialGroup.ItemIndex = 0 then
+        begin
+          FR_PlotnGor.Text := floatToStr(9.6);
+          FR_ChisloAtomovUrVMollekuleGor.Text := floatToStr(1);
+          FR_ChisloAtomIogoElemVMollekuleGor.Text := floatToStr(2);
+          FR_MolekulVesGor.Text := floatToStr(267);
+          FR_MicroSechZahvNeitrYadrIogoElementaTopliva.Text := floatToStr(0.0002);
+          FR_MicroSechRassNeitrYadrIogoElemTopl.Text := floatToStr(3.75);
+        end;
+
+        if fuelMaterialGroup.ItemIndex = 1 then
+        begin
+          FR_PlotnGor.Text := floatToStr(9.6);
+          FR_ChisloAtomovUrVMollekuleGor.Text := floatToStr(1);
+          FR_ChisloAtomIogoElemVMollekuleGor.Text := floatToStr(2);
+          FR_MolekulVesGor.Text := floatToStr(267);
+          FR_MicroSechZahvNeitrYadrIogoElementaTopliva.Text := floatToStr(0.0002);
+          FR_MicroSechRassNeitrYadrIogoElemTopl.Text := floatToStr(3.75);
+        end;
+
+        if fuelMaterialGroup.ItemIndex = 2 then
+        begin
+          FR_PlotnGor.Text := floatToStr(9.6);
+          FR_ChisloAtomovUrVMollekuleGor.Text := floatToStr(1);
+          FR_ChisloAtomIogoElemVMollekuleGor.Text := floatToStr(2);
+          FR_MolekulVesGor.Text := floatToStr(267);
+          FR_MicroSechZahvNeitrYadrIogoElementaTopliva.Text := floatToStr(0.0002);
+          FR_MicroSechRassNeitrYadrIogoElemTopl.Text := floatToStr(3.75);
+        end;
+
+        if fuelMaterialGroup.ItemIndex = 3 then
+        begin
+          FR_PlotnGor.Text := floatToStr(6.5);
+          FR_ChisloAtomovUrVMollekuleGor.Text := floatToStr(1);
+          FR_ChisloAtomIogoElemVMollekuleGor.Text := floatToStr(3);
+          FR_MolekulVesGor.Text := floatToStr(316);
+          FR_MicroSechZahvNeitrYadrIogoElementaTopliva.Text := floatToStr(0.24);
+          FR_MicroSechRassNeitrYadrIogoElemTopl.Text := floatToStr(1.4);
+        end;
+
+        if fuelMaterialGroup.ItemIndex = 4 then
+        begin
+          FR_PlotnGor.Text := floatToStr(6.5);
+          FR_ChisloAtomovUrVMollekuleGor.Text := floatToStr(1);
+          FR_ChisloAtomIogoElemVMollekuleGor.Text := floatToStr(3);
+          FR_MolekulVesGor.Text := floatToStr(316);
+          FR_MicroSechZahvNeitrYadrIogoElementaTopliva.Text := floatToStr(0.24);
+          FR_MicroSechRassNeitrYadrIogoElemTopl.Text := floatToStr(1.4);
+        end;
+
+        if fuelMaterialGroup.ItemIndex = 5 then
+        begin
+          FR_PlotnGor.Text := floatToStr(12);
+          FR_ChisloAtomovUrVMollekuleGor.Text := floatToStr(1);
+          FR_ChisloAtomIogoElemVMollekuleGor.Text := floatToStr(1);
+          FR_MolekulVesGor.Text := floatToStr(326);
+          FR_MicroSechZahvNeitrYadrIogoElementaTopliva.Text := floatToStr(0.185);
+          FR_MicroSechRassNeitrYadrIogoElemTopl.Text := floatToStr(6.2);
+        end;
+
+
+
+        if ShellGroup.ItemIndex = 0 then
+        begin
+          FR_MacroSechZahvNeitrMaterObolTvela.Text := floatToStr(0.24);
+          FR_MacroSechRassNeitrMaterOblTvela.Text := floatToStr(0.85);
+        end;
+
+        if ShellGroup.ItemIndex = 1 then
+        begin
+          FR_MacroSechZahvNeitrMaterObolTvela.Text := floatToStr(0.045);
+          FR_MacroSechRassNeitrMaterOblTvela.Text := floatToStr(0.22);
+        end;
+
+
+
+        if tvsMaterialGroup.ItemIndex = 0 then
+        begin
+          FR_MacroSechZahvNeitrKonstrMaterCasset.Text := floattostr(0.24);
+          FR_MacroSechRassNeitrKonstrMaterCasset.Text := floattostr(0.85);
+        end;
+
+        if tvsMaterialGroup.ItemIndex = 1 then
+        begin
+          FR_MacroSechZahvNeitrKonstrMaterCasset.Text := floattostr(0.045);
+          FR_MacroSechRassNeitrKonstrMaterCasset.Text := floattostr(0.22);
+        end;
+
+        if tvsMaterialGroup.ItemIndex = 2 then
+        begin
+          FR_MacroSechZahvNeitrKonstrMaterCasset.Text := floattostr(0.02);
+          FR_MacroSechRassNeitrKonstrMaterCasset.Text := floattostr(0.1);
+        end;
+
+
+        if matrixMaterialGroup.ItemIndex = 0 then
+        begin
+          FR_MacroSechZahvNeitrMaterMatr.Text := floattostr(0.24);
+          FR_MacroSechRassNeitrMaterMatr.Text := floattostr(0.85);
+        end;
+
+        if matrixMaterialGroup.ItemIndex = 1 then
+        begin
+          FR_MacroSechZahvNeitrMaterMatr.Text := floattostr(0.045);
+          FR_MacroSechRassNeitrMaterMatr.Text := floattostr(0.22);
+        end;
+
+        if matrixMaterialGroup.ItemIndex = 2 then
+        begin
+          FR_MacroSechZahvNeitrMaterMatr.Text := floattostr(0.02);
+          FR_MacroSechRassNeitrMaterMatr.Text := floattostr(0.1);
+        end;
+
+
+
+
+        FrTab.RowCount := 17;
+        FrTab.ColCount := 5;
+        FrTab.ColWidths[0] := Round(FrTab.Width * 0.05);
+        FrTab.ColWidths[1] := Round(FrTab.Width * 0.65);
+        FrTab.ColWidths[2] := Round(FrTab.Width * 0.10);
+        FrTab.ColWidths[3] := Round(FrTab.Width * 0.10);
+        FrTab.ColWidths[4] := Round(FrTab.Width * 0.10);
+        
+        
+      end;
+
+    end;
+
+
+end;
+
+
+
+
+
+
+
+
+procedure TMars.reactorGroupContextPopup(Sender: TObject; MousePos: TPoint;
+  var Handled: Boolean);
+begin
+    if reactorGroup.ItemIndex = 0 then
+    begin
+          ShowMessage('vvrd');
+    end;
+
+    if reactorGroup.ItemIndex = 1 then
+    begin
+          ShowMessage('vvrk');
+    end;
+end;
+
+
+
+
+
+procedure TMars.reactorGroupEnter(Sender: TObject);
+begin
+  //termoisset:= false;
+  //phisTIsset := false;
+  //MarstIsset := false;
+  //TrController.TabIndex := 0;
+  //FrController.TabIndex := 0;
+end;
+
+procedure TMars.TasksControllClick(Sender: TObject);
+begin
+
+   case TasksControll.TabIndex + 1 of
+      1:
+       begin
+           Task1Panel.Visible := true;
+           Task2Panel.Visible := false;
+           Task3Panel.Visible := false;
+           Task4Panel.Visible := false;
+           Task5Panel.Visible := false;
+           Task6Panel.Visible := false;
+           Task7Panel.Visible := false;
+         end;
+
+      2:
+       begin
+           Task1Panel.Visible := false;
+           Task2Panel.Visible := true;
+           Task3Panel.Visible := false;
+           Task4Panel.Visible := false;
+           Task5Panel.Visible := false;
+           Task6Panel.Visible := false;
+           Task7Panel.Visible := false;
+         end;
+
+      3:
+       begin
+           Task1Panel.Visible := false;
+           Task2Panel.Visible := false;
+           Task3Panel.Visible := true;
+           Task4Panel.Visible := false;
+           Task5Panel.Visible := false;
+           Task6Panel.Visible := false;
+           Task7Panel.Visible := false;
+         end;
+
+      4:
+       begin
+           Task1Panel.Visible := false;
+           Task2Panel.Visible := false;
+           Task3Panel.Visible := false;
+           Task4Panel.Visible := true;
+           Task5Panel.Visible := false;
+           Task6Panel.Visible := false;
+           Task7Panel.Visible := false;
+         end;
+
+      5:
+       begin
+           Task1Panel.Visible := false;
+           Task2Panel.Visible := false;
+           Task3Panel.Visible := false;
+           Task4Panel.Visible := false;
+           Task5Panel.Visible := true;
+           Task6Panel.Visible := false;
+           Task7Panel.Visible := false;
+         end;
+
+      6:
+       begin
+           Task1Panel.Visible := false;
+           Task2Panel.Visible := false;
+           Task3Panel.Visible := false;
+           Task4Panel.Visible := false;
+           Task5Panel.Visible := false;
+           Task6Panel.Visible := true;
+           Task7Panel.Visible := false;
+         end;
+
+      7:
+       begin
+           Task1Panel.Visible := false;
+           Task2Panel.Visible := false;
+           Task3Panel.Visible := false;
+           Task4Panel.Visible := false;
+           Task5Panel.Visible := false;
+           Task6Panel.Visible := false;
+           Task7Panel.Visible := true;
+         end;
+
+
+   end;
+end;
+
+procedure TMars.ToFrClick(Sender: TObject);
+begin
+    MainController.TabIndex := 2;
+        FR_ReactorType.Text := reactorType;
+        FR_MaterialObl.Text := shellMaterial;
+        FR_CassetType.Text := сassetteType;
+        FR_Fuel.Text := FuelMaterial;
+        FR_CassetMaterial.Text := сassetteMaterial;
+        FR_MatrixMaterial.Text := matrixMaterial;
+
+        FR_Result_ReactorType.Text := reactorType;
+        FR_Result_MaterialObl.Text := shellMaterial;
+        FR_Result_CassetType.Text := сassetteType;
+        FR_Result_FuelType.Text := FuelMaterial;
+        FR_Result_CassetMaterial.Text := сassetteMaterial;
+        FR_Result_MatrixMaterial.Text := matrixMaterial;
+
+
+        if fuelMaterialGroup.ItemIndex = 0 then
+        begin
+          FR_PlotnGor.Text := floatToStr(9.6);
+          FR_ChisloAtomovUrVMollekuleGor.Text := floatToStr(1);
+          FR_ChisloAtomIogoElemVMollekuleGor.Text := floatToStr(2);
+          FR_MolekulVesGor.Text := floatToStr(267);
+          FR_MicroSechZahvNeitrYadrIogoElementaTopliva.Text := floatToStr(0.0002);
+          FR_MicroSechRassNeitrYadrIogoElemTopl.Text := floatToStr(3.75);
+        end;
+
+        if fuelMaterialGroup.ItemIndex = 1 then
+        begin
+          FR_PlotnGor.Text := floatToStr(9.6);
+          FR_ChisloAtomovUrVMollekuleGor.Text := floatToStr(1);
+          FR_ChisloAtomIogoElemVMollekuleGor.Text := floatToStr(2);
+          FR_MolekulVesGor.Text := floatToStr(267);
+          FR_MicroSechZahvNeitrYadrIogoElementaTopliva.Text := floatToStr(0.0002);
+          FR_MicroSechRassNeitrYadrIogoElemTopl.Text := floatToStr(3.75);
+        end;
+
+        if fuelMaterialGroup.ItemIndex = 2 then
+        begin
+          FR_PlotnGor.Text := floatToStr(9.6);
+          FR_ChisloAtomovUrVMollekuleGor.Text := floatToStr(1);
+          FR_ChisloAtomIogoElemVMollekuleGor.Text := floatToStr(2);
+          FR_MolekulVesGor.Text := floatToStr(267);
+          FR_MicroSechZahvNeitrYadrIogoElementaTopliva.Text := floatToStr(0.0002);
+          FR_MicroSechRassNeitrYadrIogoElemTopl.Text := floatToStr(3.75);
+        end;
+
+        if fuelMaterialGroup.ItemIndex = 3 then
+        begin
+          FR_PlotnGor.Text := floatToStr(6.5);
+          FR_ChisloAtomovUrVMollekuleGor.Text := floatToStr(1);
+          FR_ChisloAtomIogoElemVMollekuleGor.Text := floatToStr(3);
+          FR_MolekulVesGor.Text := floatToStr(316);
+          FR_MicroSechZahvNeitrYadrIogoElementaTopliva.Text := floatToStr(0.24);
+          FR_MicroSechRassNeitrYadrIogoElemTopl.Text := floatToStr(1.4);
+        end;
+
+        if fuelMaterialGroup.ItemIndex = 4 then
+        begin
+          FR_PlotnGor.Text := floatToStr(6.5);
+          FR_ChisloAtomovUrVMollekuleGor.Text := floatToStr(1);
+          FR_ChisloAtomIogoElemVMollekuleGor.Text := floatToStr(3);
+          FR_MolekulVesGor.Text := floatToStr(316);
+          FR_MicroSechZahvNeitrYadrIogoElementaTopliva.Text := floatToStr(0.24);
+          FR_MicroSechRassNeitrYadrIogoElemTopl.Text := floatToStr(1.4);
+        end;
+
+        if fuelMaterialGroup.ItemIndex = 5 then
+        begin
+          FR_PlotnGor.Text := floatToStr(12);
+          FR_ChisloAtomovUrVMollekuleGor.Text := floatToStr(1);
+          FR_ChisloAtomIogoElemVMollekuleGor.Text := floatToStr(1);
+          FR_MolekulVesGor.Text := floatToStr(326);
+          FR_MicroSechZahvNeitrYadrIogoElementaTopliva.Text := floatToStr(0.185);
+          FR_MicroSechRassNeitrYadrIogoElemTopl.Text := floatToStr(6.2);
+        end;
+
+
+
+        if ShellGroup.ItemIndex = 0 then
+        begin
+          FR_MacroSechZahvNeitrMaterObolTvela.Text := floatToStr(0.24);
+          FR_MacroSechRassNeitrMaterOblTvela.Text := floatToStr(0.85);
+        end;
+
+        if ShellGroup.ItemIndex = 1 then
+        begin
+          FR_MacroSechZahvNeitrMaterObolTvela.Text := floatToStr(0.045);
+          FR_MacroSechRassNeitrMaterOblTvela.Text := floatToStr(0.22);
+        end;
+
+
+
+        if tvsMaterialGroup.ItemIndex = 0 then
+        begin
+          FR_MacroSechZahvNeitrKonstrMaterCasset.Text := floattostr(0.24);
+          FR_MacroSechRassNeitrKonstrMaterCasset.Text := floattostr(0.85);
+        end;
+
+        if tvsMaterialGroup.ItemIndex = 1 then
+        begin
+          FR_MacroSechZahvNeitrKonstrMaterCasset.Text := floattostr(0.045);
+          FR_MacroSechRassNeitrKonstrMaterCasset.Text := floattostr(0.22);
+        end;
+
+        if tvsMaterialGroup.ItemIndex = 2 then
+        begin
+          FR_MacroSechZahvNeitrKonstrMaterCasset.Text := floattostr(0.02);
+          FR_MacroSechRassNeitrKonstrMaterCasset.Text := floattostr(0.1);
+        end;
+
+
+        if matrixMaterialGroup.ItemIndex = 0 then
+        begin
+          FR_MacroSechZahvNeitrMaterMatr.Text := floattostr(0.24);
+          FR_MacroSechRassNeitrMaterMatr.Text := floattostr(0.85);
+        end;
+
+        if matrixMaterialGroup.ItemIndex = 1 then
+        begin
+          FR_MacroSechZahvNeitrMaterMatr.Text := floattostr(0.045);
+          FR_MacroSechRassNeitrMaterMatr.Text := floattostr(0.22);
+        end;
+
+        if matrixMaterialGroup.ItemIndex = 2 then
+        begin
+          FR_MacroSechZahvNeitrMaterMatr.Text := floattostr(0.02);
+          FR_MacroSechRassNeitrMaterMatr.Text := floattostr(0.1);
+        end;
+
+
+
+
+        FrTab.RowCount := 17;
+        FrTab.ColCount := 5;
+        FrTab.ColWidths[0] := Round(FrTab.Width * 0.05);
+        FrTab.ColWidths[1] := Round(FrTab.Width * 0.65);
+        FrTab.ColWidths[2] := Round(FrTab.Width * 0.10);
+        FrTab.ColWidths[3] := Round(FrTab.Width * 0.10);
+        FrTab.ColWidths[4] := Round(FrTab.Width * 0.10);
+
+end;
+
+procedure TMars.TrControllerChange(Sender: TObject);
+begin
+    if MarsTIsset = true then
+    begin
+      ScrollBox2.VertScrollBar.Position := 0;
+      TR_TaskNumberResultOutput.Caption := 'Задача' + ' ' + IntToStr(TasksControll.TabIndex + 1);
+      TR_ReactorTypeResultOutput.Text := reactorType;
+      TR_CassetTypeResultOutput.Text := сassetteType;
+      TR_ShellMaterialTypeResultOutput.Text := shellMaterial;
+      TR_FuelTypeResultOutput.Text := fuelMaterial;
+    end
+    else
+    begin
+      TrController.TabIndex := 0;
+      showMessage('Задайте свои данные для расчета, а затем нажмите кнопку принять');
+
+    end;
+end;
+
+procedure TMars.TR_ExcelClick(Sender: TObject);
+var
+Wsheet : OleVariant;
+it : integer;
+begin
+     ExcelApp := CreateOleObject('Excel.Application');
+     ExcelApp.Visible := True;
+     ExcelApp.Workbooks.Add;
+     Wsheet := ExcelApp.WorkSheets[1];
+     Wsheet.Activate;
+
+     Wsheet.Range['a1'].ColumnWidth := 10;
+     Wsheet.Range['b1'].ColumnWidth := 65;
+     Wsheet.Range['c1'].ColumnWidth := 20;
+
+     Wsheet.Range['f1'].ColumnWidth := 20;
+     Wsheet.Range['g1'].ColumnWidth := 20;
+
+     //Wsheet.Range['a1','c5'].Value := 'data';
+     //Wsheet.Range['a1','c5'].Borders.LineStyle:=1;
+     
+     Wsheet.Range['f1'].Value := 'Тип реактора';
+     Wsheet.Range['g1'].Value := kmr;
+     Wsheet.Range['f2'].Value := 'Материал оболочки';
+     Wsheet.Range['g2'].Value := shellMaterial;
+     Wsheet.Range['f3'].Value := 'Тип кассеты';
+     Wsheet.Range['g3'].Value := сassetteType;
+     Wsheet.Range['f4'].Value := 'Топливо';
+     Wsheet.Range['g4'].Value := FuelMaterial;
+     Wsheet.Range['f5'].Value := 'Задача';
+     Wsheet.Range['g5'].Value := 'Задача номер ' + inttostr(TasksControll.TabIndex + 1);     
+
+     Wsheet.Range['f1','g5'].Borders.LineStyle:=1;
+     Wsheet.Range['f1','f5'].Font.FontStyle:= 'Bold';
+     Wsheet.Range['a1','c1'].Font.FontStyle:= 'Bold';
+     
+
+
+     
+     if kmr = 'ВВРК' then
+     begin
+        Wsheet.Range['a1','c31'].Borders.LineStyle:=1;
+     end;
+
+     if kmr = 'ВВРД' then
+     begin
+        Wsheet.Range['a1','c28'].Borders.LineStyle:=1;
+     end;
+
+     Wsheet.Range['a1'].Value := '№';
+     Wsheet.Range['b1'].Value := 'Параметр';
+     Wsheet.Range['c1'].Value := 'Значение';
+
+     if TasksControll.TabIndex + 1 = 1 then
+      begin
+      Wsheet.Range['b2'].Value:= 'Отношение высоты АЗ к диаметру';
+      Wsheet.Range['c2'].Value:= hkd;
+      Wsheet.Range['b3'].Value:= 'Предельно допустимое выгорание, г/см3';
+      Wsheet.Range['c3'].Value:=dlq;
+      Wsheet.Range['b4'].Value:= 'Заданное среднее значение скорости теплоносителя на входе  в АЗ, м/с';
+      Wsheet.Range['c4'].Value:=wvh;
+      Wsheet.Range['b5'].Value:= 'Доля воды в ячейке АЗ';
+      Wsheet.Range['c5'].Value:= rh20;
+
+        Wsheet.Range['b6'].Value:='Диаметр твэла, мм';
+        Wsheet.Range['c6'].Value:=dtv;
+        Wsheet.Range['b7']:='Зазор между твэлами, мм';
+        Wsheet.Range['c7']:=dltv;
+        Wsheet.Range['b8']:='Зазор между кассетами, мм';
+        Wsheet.Range['c8']:=dlmk;
+        Wsheet.Range['b9']:='Число кассет';
+        Wsheet.Range['c9']:=nks;
+        Wsheet.Range['b10']:='Высота АЗ, мм';
+        Wsheet.Range['c10']:=haz;
+
+        N_data:=11;
+        Ik:=29;
+      end;
+
+      if TasksControll.TabIndex + 1 = 2 then
+      begin
+      Wsheet.Range['b2'].Value:= 'Отношение высоты АЗ к диаметру';
+      Wsheet.Range['c2'].Value:= hkd;
+      Wsheet.Range['b3']:= 'Зазор между кассетами, мм';
+      Wsheet.Range['c3'].Value:=dlmk;
+      Wsheet.Range['b4']:= 'Предельно допустимое выгорание, г/см3';
+      Wsheet.Range['c4']:=dlq;
+      Wsheet.Range['b5']:= 'Заданное среднее значение скорости теплоносителя на входе  в АЗ, м/с';
+      Wsheet.Range['c5']:=wvh;
+
+        Wsheet.Range['b6']:='Диаметр твэла, мм';
+        Wsheet.Range['c6']:=dtv;
+        Wsheet.Range['b7']:='Зазор между твэлами, мм';
+        Wsheet.Range['c7']:=dltv;
+        Wsheet.Range['b8']:='Число кассет';
+        Wsheet.Range['c8']:=nks;
+        Wsheet.Range['b9']:='Высота АЗ, мм';
+        Wsheet.Range['c9']:=haz;
+        Wsheet.Range['b10']:='Доля воды в ячейке АЗ';
+        Wsheet.Range['c10']:=rh20;
+
+        N_data:=11;
+        Ik:=29;
+      end;
+
+      if TasksControll.TabIndex + 1 = 3 then
+      begin
+      Wsheet.Range['b2']:= 'Диаметр твэла, мм';
+      Wsheet.Range['c2']:= dtv;
+      Wsheet.Range['b3']:= 'Зазор между твэлами, мм';
+      Wsheet.Range['c3']:= dltv;
+      Wsheet.Range['b4']:= 'Зазор между кассетами, мм';
+      Wsheet.Range['c4']:=dlmk;
+      Wsheet.Range['b5']:= 'Предельно допустимое выгорание, г/см3';
+      Wsheet.Range['c5']:=dlq;
+      Wsheet.Range['b6']:= 'Заданное среднее значение скорости теплоносителя на входе  в АЗ, м/с';
+      Wsheet.Range['c6']:=wvh;
+
+        Wsheet.Range['b7']:='Число кассет';
+        Wsheet.Range['c7']:=nks;
+        Wsheet.Range['b8']:='Отношение высоты АЗ к диаметру';
+        Wsheet.Range['c8']:=hkd;
+        Wsheet.Range['b9']:='Высота АЗ, мм';
+        Wsheet.Range['c9']:=haz;
+        Wsheet.Range['b10']:='Доля воды в ячейке АЗ';
+        Wsheet.Range['c10']:=rh20;
+
+        N_data:=11;
+        Ik:=30;
+      end;
+
+      if TasksControll.TabIndex + 1 = 4 then
+      begin
+      Wsheet.Range['b2']:= 'Диаметр твэла, мм';
+      Wsheet.Range['c2']:= dtv;
+      Wsheet.Range['b3']:= 'Зазор между твэлами, мм';
+      Wsheet.Range['c3']:= dltv;
+      Wsheet.Range['b4']:= 'Зазор между кассетами, мм';
+      Wsheet.Range['c4']:= dlmk;
+      Wsheet.Range['b5']:= 'Отношение высоты АЗ к диаметру';
+      Wsheet.Range['c5']:= hkd;
+      Wsheet.Range['b6']:= 'Предельно допустимое выгорание, г/см3';
+      Wsheet.Range['c6']:= dlq;
+
+        Wsheet.Range['b7']:='Число кассет';
+        Wsheet.Range['c7']:= nks;
+        Wsheet.Range['b8']:='Высота АЗ, мм';
+        Wsheet.Range['c8']:= haz;
+        Wsheet.Range['b9']:='Заданное среднее значение скорости теплоносителя на входе  в АЗ, м/с';
+        Wsheet.Range['c9']:= wvh;
+        Wsheet.Range['b10']:='Доля воды в ячейке АЗ';
+        Wsheet.Range['c10']:= rh20;
+
+        N_data:=11;
+        Ik:=30;
+      end;
+
+      if TasksControll.TabIndex + 1 = 5 then
+      begin
+      Wsheet.Range['b2']:= 'Диаметр твэла, мм';
+      Wsheet.Range['c2']:= dtv;
+      Wsheet.Range['b3']:= 'Зазор между твэлами, мм';
+      Wsheet.Range['c3']:= dltv;
+      Wsheet.Range['b4']:= 'Зазор между кассетами, мм';
+      Wsheet.Range['c4']:= dlmk;
+      Wsheet.Range['b5']:= 'Число кассет';
+      Wsheet.Range['c5']:= nks;
+      Wsheet.Range['b6']:= 'Предельно допустимое выгорание, г/см3';
+      Wsheet.Range['c6']:= dlq;
+
+        Wsheet.Range['b7']:='Отношение высоты АЗ к диаметру';
+        Wsheet.Range['c7']:= hkd;
+        Wsheet.Range['b8']:='Высота АЗ, мм';
+        Wsheet.Range['c8']:= haz;
+        Wsheet.Range['b9']:='Заданное среднее значение скорости теплоносителя на входе  в АЗ, м/с';
+        Wsheet.Range['c9']:= wvh;
+        Wsheet.Range['b10']:='Доля воды в ячейке АЗ';
+        Wsheet.Range['c10']:= rh20;
+
+        N_data:=11;
+        Ik:=30;
+      end;
+
+      if TasksControll.TabIndex + 1 = 6 then
+      begin
+      Wsheet.Range['b2']:= 'Диаметр твэла, мм';
+      Wsheet.Range['c2']:= dtv;
+      Wsheet.Range['b3']:= 'Зазор между кассетами, мм';
+      Wsheet.Range['c3']:= dlmk;
+      Wsheet.Range['b4']:= 'Число кассет';
+      Wsheet.Range['c4']:= nks;
+      Wsheet.Range['b5']:= 'Предельно допустимое выгорание, г/см3';
+      Wsheet.Range['c5']:= dlq;
+      Wsheet.Range['b6']:= 'Заданное среднее значение скорости теплоносителя на входе  в АЗ, м/с';
+      Wsheet.Range['c6']:= wvh;
+
+        Wsheet.Range['b7']:='Зазор между твэлами, мм';
+        Wsheet.Range['c7']:= dltv;
+        Wsheet.Range['b8']:='Отношение высоты АЗ к диаметру';
+        Wsheet.Range['c8']:= hkd;
+        Wsheet.Range['b9']:='Высота АЗ, мм';
+        Wsheet.Range['c9']:= haz;
+        Wsheet.Range['b10']:='Доля воды в ячейке АЗ';
+        Wsheet.Range['c10']:= rh20;
+
+        N_data:=11;
+        Ik:=30;
+      end;
+
+      if TasksControll.TabIndex + 1 = 7 then
+      begin
+      Wsheet.Range['b2']:= 'Диаметр твэла, мм';
+      Wsheet.Range['c2']:= dtv;
+      Wsheet.Range['b3']:= 'Зазор между твэлами, мм';
+      Wsheet.Range['c3']:= dltv;
+      Wsheet.Range['b4']:= 'Зазор между кассетами, мм';
+      Wsheet.Range['c4']:= dlmk;
+      Wsheet.Range['b5']:= 'Число кассет';
+      Wsheet.Range['c5']:= nks;
+      Wsheet.Range['b6']:= 'Высота АЗ, мм';
+      Wsheet.Range['c6']:= haz;
+
+        Wsheet.Range['b7']:='Отношение высоты АЗ к диаметру';
+        Wsheet.Range['c7']:= hkd;
+        Wsheet.Range['b8']:='Предельно допустимое выгорание, г/см3';
+        Wsheet.Range['c8']:= dlq;
+        Wsheet.Range['b9']:='Заданное среднее значение скорости теплоносителя на входе  в АЗ, м/с';
+        Wsheet.Range['c9']:= wvh;
+        Wsheet.Range['b10']:='Доля воды в ячейке АЗ';
+        Wsheet.Range['c10']:= rh20;
+
+        N_data:=11;
+        Ik:=30;
+      end;
+
+      Ik := 0;
+
+      Wsheet.Range[Format('b%d',[N_data])]:='Число твэл в кассете';
+      Wsheet.Range[Format('c%d',[N_data])]:= ztv;
+
+      Wsheet.Range[Format('b%d',[N_data + 1])]:='Диаметр кассеты, мм';
+      Wsheet.Range[Format('c%d',[N_data + 1])]:=dks;
+
+      Wsheet.Range[Format('b%d',[N_data + 2])]:='Диаметр АЗ, мм';
+      Wsheet.Range[Format('c%d',[N_data + 2])]:=daz;
+
+      Wsheet.Range[Format('b%d',[N_data + 3])]:='Доля конструкционных материалов кассеты в ячейке АЗ';
+      Wsheet.Range[Format('c%d',[N_data + 3])]:=rk;
+
+      Wsheet.Range[Format('b%d',[N_data + 4])]:='Доля материалов оболочек твэлов в ячейке АЗ';
+      Wsheet.Range[Format('c%d',[N_data + 4])]:=rob;
+
+      Wsheet.Range[Format('b%d',[N_data + 5])]:='Доля топлива в ячейке';
+      Wsheet.Range[Format('c%d',[N_data + 5])]:=rtop;
+
+      if Kmr='ВВРК' then
+      begin
+        Ik:=7;
+        Wsheet.Range[Format('b%d',[N_data + 6])]:='Доля АЗ,занятая экономайзером';
+        Wsheet.Range[Format('c%d',[N_data + 6])]:=le;
+      end
+      else
+        Ik:=6;
+      Wsheet.Range[Format('b%d',[N_data + Ik])]:='Средний тепловой поток в АЗ, Вт/м2';
+      Wsheet.Range[Format('c%d',[N_data + Ik])]:=qsr;
+
+      Wsheet.Range[Format('b%d',[N_data + Ik + 1])]:='Критический  тепловой поток в АЗ, Вт/м2';
+      Wsheet.Range[Format('c%d',[N_data + Ik + 1])]:=qkr;
+
+      Wsheet.Range[Format('b%d',[N_data + Ik + 2])]:='Запас по кризису';
+      Wsheet.Range[Format('c%d',[N_data + Ik + 2])]:=kqp;
+
+      Wsheet.Range[Format('b%d',[N_data + Ik + 3])]:='Максимальная температура топлива, град.С';
+      Wsheet.Range[Format('c%d',[N_data + Ik + 3])]:=ttmax;
+
+      Wsheet.Range[Format('b%d',[N_data + Ik + 4])]:='Температура теплоносителя на выходе из МКП, град.С';
+      Wsheet.Range[Format('c%d',[N_data + Ik + 4])]:=tvimk;
+
+      Wsheet.Range[Format('b%d',[N_data + Ik + 5])]:='Температура теплоносителя на выходе из кассет на выходе из МКП, град.С';
+      Wsheet.Range[Format('c%d',[N_data + Ik + 5])]:=tviks;
+
+      Wsheet.Range[Format('b%d',[N_data + Ik + 6])]:='Средний удельный объем замедлителя в АЗ,  м3/кг';
+      Wsheet.Range[Format('c%d',[N_data + Ik + 6])]:=vazsr;
+
+      Wsheet.Range[Format('b%d',[N_data + Ik + 7])]:='Поверхность теплообмена АЗ, м2';
+      Wsheet.Range[Format('c%d',[N_data + Ik + 7])]:=saz;
+
+      Wsheet.Range[Format('b%d',[N_data + Ik + 8])]:='Расход теплоносителя через АЗ, кг/с';
+      Wsheet.Range[Format('c%d',[N_data + Ik + 8])]:=gaz;
+
+      Wsheet.Range[Format('b%d',[N_data + Ik + 9])]:='Давление теплоносителя, МПа';
+      Wsheet.Range[Format('c%d',[N_data + Ik + 9])]:=p;
+
+      if Kmr='ВВРК' then
+      begin
+        Ik:=18;
+        Wsheet.Range[Format('b%d',[N_data + 17])]:='Массовое паросодержание на выходе из A3';
+        Wsheet.Range[Format('c%d',[N_data + 17])]:=xk;
+
+        Wsheet.Range[Format('b%d',[N_data + 18])]:='Среднее истинное oбъемное паросодержание';
+        Wsheet.Range[Format('c%d',[N_data + 18])]:=fi;
+      end
+      else
+        Ik:=15;
+      Wsheet.Range[Format('b%d',[N_data + Ik + 1])]:='Действительное выгорание,г/см3';
+      Wsheet.Range[Format('c%d',[N_data + Ik + 1])]:=ddlq;
+      Wsheet.Range[Format('b%d',[N_data + Ik + 2])]:='Действительное значение скорости теплоносителя на входе в АЗ, м/с';
+      Wsheet.Range[Format('c%d',[N_data + Ik + 2])]:=wvhd;
+
+      if kmr = 'ВВРК' then
+      begin
+        for it := 1 to 30 do
+          begin
+             Wsheet.Range[Format('a%d',[it + 1])]:=it;
+          end;
+
+      end;
+
+      if kmr = 'ВВРД' then
+      begin
+        for it := 1 to 27 do
+          begin
+             Wsheet.Range[Format('a%d',[it + 1])]:=it;
+          end;
+
+      end;
+
+
+
+
+      
+
+     
+
+     
+     
+     
+     
+     
+     
+
+end;
+
+end.
+
+
+
+
+
+
+
+
